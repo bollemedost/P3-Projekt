@@ -17,10 +17,12 @@ public class SlayMovingPlatform : MonoBehaviour
     [SerializeField] private float moveSpeed = 2f; // Speed of movement
 
     private Vector3 startingPosition; // Starting position of the platform
+    private Vector3 lastPosition; // Last position of the platform for movement calculations
 
     private void Start()
     {
         startingPosition = transform.position; // Save the starting position
+        lastPosition = transform.position; // Initialize last position
     }
 
     private void Update()
@@ -46,21 +48,38 @@ public class SlayMovingPlatform : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        // Check if the player stepped on the platform
+        // Check if the player is on the platform
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.SetParent(transform); // Make the player a child of the platform
+            // Get the Rigidbody component of the player
+            Rigidbody playerRb = collision.gameObject.GetComponent<Rigidbody>();
+
+            if (playerRb != null)
+            {
+                // Calculate the platform's movement since the last frame
+                Vector3 platformMovement = transform.position - lastPosition;
+
+                // Apply the platform's velocity to the player
+                playerRb.velocity = new Vector3(playerRb.velocity.x + platformMovement.x / Time.deltaTime, playerRb.velocity.y, playerRb.velocity.z + platformMovement.z / Time.deltaTime);
+            }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Optional: You can add any additional logic for when the player first steps on the platform
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        // Check if the player stepped off the platform
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.transform.SetParent(null); // Remove the player from the platform's hierarchy
-        }
+        // Optional: You can add any additional logic for when the player leaves the platform
+    }
+
+    private void LateUpdate()
+    {
+        // Update the last position at the end of the frame
+        lastPosition = transform.position;
     }
 }

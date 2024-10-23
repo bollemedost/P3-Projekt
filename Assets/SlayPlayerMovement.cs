@@ -5,137 +5,138 @@ using UnityEngine.InputSystem;
 
 public class SlayPlayerMovement : MonoBehaviour
 {
-    public Vector3 movement; // Movement input (X, Z axis)
-    public Rigidbody myBody; // Rigidbody component to move the player
-    [SerializeField] private float speed = 5f;  // Movement speed
-
-    [SerializeField] private float jumpForce = 5f; // Force applied for jumping
-    [SerializeField] private LayerMask groundLayer; // Layer used to detect the ground
-
-    private bool isGrounded; // Track if player is on the ground
-    private bool jumpRequest; // Whether the player has pressed the jump/space button
-    private bool canDoubleJump; // Track if player can perform a double jump
+    public Vector3 movement;
+    public Rigidbody myBody;
+    public float speed = 5f;
+    public float jumpForce = 5f;
+    public LayerMask groundLayer;
+    private bool isGrounded;
+    private bool jumpRequest;
+    private bool canDoubleJump;
 
     // Dash variables
-    [SerializeField] private float dashSpeed = 15f; // Speed during the dash
-    [SerializeField] private float dashDuration = 0.3f; // Duration of the dash
-    [SerializeField] private float dashCooldown = 1f; // Cooldown time between dashes
-    private bool isDashing = false; // Track if the player is currently dashing
-    private float lastDashTime = 0f; // Time when the last dash occurred
+    [SerializeField] private float dashSpeed = 20f; // Dash speed (adjustable in Inspector)
+    [SerializeField] private float dashDuration = 0.2f; // How long the dash lasts (adjustable in Inspector)
+    [SerializeField] private float dashCooldown = 1f; // Time between dashes (adjustable in Inspector)
+    private bool canDash = false; // Whether the player has unlocked the dash ability
+    private bool isDashing = false; // Whether the player is currently dashing
+    private float lastDashTime;
+    private TrailRenderer trailRenderer; // Optional for dash effect
 
-    // Trail Renderer
-    [SerializeField] private TrailRenderer trailRenderer; // Reference to the Trail Renderer
+    // Last direction variables
+    private Vector3 lastDirection;
 
     private void Awake()
     {
-        myBody = GetComponent<Rigidbody>(); // Get the Rigidbody component
-        // Optionally, get the Trail Renderer if it's not set in the Inspector
-        if (trailRenderer == null)
+        myBody = GetComponent<Rigidbody>();
+        trailRenderer = GetComponent<TrailRenderer>();
+        if (trailRenderer != null)
         {
-            trailRenderer = GetComponent<TrailRenderer>();
+            trailRenderer.enabled = false; // Disable trail renderer initially
         }
+    }
+
+    public void EnableDash()
+    {
+        canDash = true; // Enable the dash ability
     }
 
     private void OnMovement(InputValue value)
     {
-        // Get the movement input from the Input System as a Vector3
         movement = value.Get<Vector3>();
+        // Track last movement direction
+        if (movement != Vector3.zero)
+        {
+            lastDirection = movement.normalized; // Keep the last direction pressed
+        }
     }
 
     private void OnJump(InputValue value)
     {
-        // Trigger jump or double jump request
         if (value.isPressed)
         {
-            if (isGrounded) // First jump
+            if (isGrounded)
             {
                 jumpRequest = true;
             }
-            else if (canDoubleJump) // Double jump
+            else if (canDoubleJump)
             {
                 jumpRequest = true;
-                canDoubleJump = false; // Disable double jump after use
+                canDoubleJump = false;
             }
         }
     }
 
     private void OnDash(InputValue value)
     {
-        // Trigger dash request if input is pressed and cooldown is finished
-        if (value.isPressed && Time.time >= lastDashTime + dashCooldown && !isDashing)
+        if (value.isPressed && canDash && !isDashing && Time.time > lastDashTime + dashCooldown)
         {
             StartCoroutine(Dash());
         }
     }
 
-    private void FixedUpdate()
+    private IEnumerator Dash()
     {
-        if (!isDashing) // Only move if not dashing
+        Debug.Log("Dashing..."); // Debug statement
+        isDashing = true;
+        lastDashTime = Time.time;
+
+        if (trailRenderer != null)
         {
-            // Calculate movement direction relative to the camera
-            Camera camera = Camera.main; // Assuming there's only one main camera
-            Vector3 forward = camera.transform.forward; // Get camera forward direction
-            Vector3 right = camera.transform.right; // Get camera right direction
+            trailRenderer.enabled = true; // Enable trail during dash
+        }
 
-            // Set the y component to zero for flat movement
-            forward.y = 0; 
-            right.y = 0; 
+        // Use the last direction pressed for the dash
+        Vector3 dashDirection = lastDirection; // Get the last movement direction
+        dashDirection.y = 0; // Ensure the dash is horizontal
+        myBody.velocity = dashDirection * dashSpeed; // Set the dash velocity
 
-            // Normalize the directions
-            forward.Normalize();
-            right.Normalize();
+        yield return new WaitForSeconds(dashDuration);
 
-            // Calculate global movement direction
-            Vector3 globalMovement = (forward * movement.z + right * movement.x).normalized;
+        // Stop the dash after the duration
+        myBody.velocity = new Vector3(0, myBody.velocity.y, 0); // Keep vertical velocity but reset horizontal velocity
 
-            // Preserve the Y-axis velocity (gravity) when moving on X and Z axes
-            myBody.velocity = new Vector3(globalMovement.x * speed, myBody.velocity.y, globalMovement.z * speed);
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = false; // Disable trail after dash
+        }
+        isDashing = false;
+        Debug.Log("Dash ended."); // Debug statement
+    }
 
-            // Handle jump logic
-            if (jumpRequest)
-            {
-                myBody.velocity = new Vector3(myBody.velocity.x, 0f, myBody.velocity.z); // Reset Y velocity
-                myBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply the jump force
-                jumpRequest = false; // Reset jump request after jump
-            }
+   private void FixedUpdate()
+{
+    // Only apply movement if not dashing
+    if (!isDashing)
+    {
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+        Vector3 globalMovement = (forward * movement.z + right * movement.x).normalized;
 
-            // Check if player is grounded
-            isGrounded = CheckGrounded();
+        // Calculate new velocity without overwriting platform effects
+        myBody.velocity = new Vector3(globalMovement.x * speed, myBody.velocity.y, globalMovement.z * speed);
 
-            // Allow double jump if the player is airborne but not grounded
-            if (isGrounded)
-            {
-                canDoubleJump = true; // Reset double jump when grounded
-            }
+        if (jumpRequest)
+        {
+            myBody.velocity = new Vector3(myBody.velocity.x, 0f, myBody.velocity.z); // Reset vertical velocity for consistent jumps
+            myBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpRequest = false;
         }
     }
 
-    private IEnumerator Dash()
+    isGrounded = CheckGrounded();
+
+    if (isGrounded)
     {
-        isDashing = true; // Set dashing state to true
-        lastDashTime = Time.time; // Record the time of the dash
-
-        // Enable the trail renderer
-        trailRenderer.emitting = true;
-
-        // Apply dash force in the direction the player moved last
-        Camera camera = Camera.main; // Assuming there's only one main camera
-        Vector3 dashDirection = (camera.transform.forward * movement.z + camera.transform.right * movement.x).normalized;
-        dashDirection.y = 0; // Prevent vertical movement during dash
-
-        myBody.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
-
-        yield return new WaitForSeconds(dashDuration); // Wait for the duration of the dash
-
-        // Disable the trail renderer after the dash
-        trailRenderer.emitting = false;
-
-        isDashing = false; // Reset dashing state after duration
+        canDoubleJump = true; // Reset double jump if on the ground
     }
-
-    private bool CheckGrounded()
+}    
+private bool CheckGrounded()
     {
-        // Raycast downwards to check if player is on the ground (adjust raycast distance for player height)
         return Physics.Raycast(transform.position, Vector3.down, 1.1f, groundLayer);
     }
 }
