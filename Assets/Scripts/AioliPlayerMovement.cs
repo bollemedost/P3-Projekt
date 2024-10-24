@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class AioliPlayerMovement : MonoBehaviour
 {
     private Vector3 movement; // Movement input (X, Z axis)
     private Rigidbody myBody; // Rigidbody component to move the player
