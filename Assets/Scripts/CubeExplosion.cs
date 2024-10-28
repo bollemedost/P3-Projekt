@@ -6,12 +6,43 @@ public class CubeExplosion : MonoBehaviour
 {
     public GameObject cubeFragmentPrefab; // Reference to your small cube prefab
     public int fragmentsPerAxis = 5; // Number of small cubes per axis (e.g., 5x5x5 = 125 fragments)
-    public float explosionForce = 50f; // Force applied to the small cubes
+    public float explosionForce = 50f; // Overall force applied to the fragments
     public float explosionRadius = 5f; // Radius of the explosion
     public float minDestroyTime = 0.1f; // Minimum time before fragment is destroyed
     public float maxDestroyTime = 2f; // Maximum time before fragment is destroyed
+    public float triggerDistance = 2f; // Distance to trigger the explosion
+    public float fragmentForceMultiplier = 0.2f; // Multiplier to control fragment force intensity
 
     private bool exploded = false; // To prevent multiple explosions
+    private PlayerMovementCombined playerMovement; // Reference to the PlayerMovementCombined script
+
+    private void Start()
+    {
+        // Find the player object with tag "Player" and get the PlayerMovementCombined component
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerMovement = player.GetComponent<PlayerMovementCombined>();
+        }
+    }
+
+    private void Update()
+    {
+        // Check if the player is close enough and the left mouse button is pressed
+        if (playerMovement != null && IsPlayerInRange() && Input.GetMouseButtonDown(0))
+        {
+            Explode();
+        }
+    }
+
+    private bool IsPlayerInRange()
+    {
+        // Calculate the distance between the player and the cube
+        Vector3 playerPosition = playerMovement.transform.position;
+        float distanceToPlayer = Vector3.Distance(playerPosition, transform.position);
+
+        return distanceToPlayer <= triggerDistance;
+    }
 
     public void Explode()
     {
@@ -40,9 +71,10 @@ public class CubeExplosion : MonoBehaviour
                     // Adjust the scale of the fragment
                     fragment.transform.localScale = fragmentSize;
 
-                    // Apply a random explosion force to each fragment
+                    // Apply a subtle force away from the player
                     Rigidbody rb = fragment.AddComponent<Rigidbody>();
-                    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                    Vector3 forceDirection = (fragment.transform.position - playerMovement.transform.position).normalized;
+                    rb.AddForce(forceDirection * explosionForce * fragmentForceMultiplier, ForceMode.Impulse);
 
                     // Randomize the destruction time for each fragment between minDestroyTime and maxDestroyTime
                     float randomDestroyTime = Random.Range(minDestroyTime, maxDestroyTime);
@@ -53,14 +85,5 @@ public class CubeExplosion : MonoBehaviour
 
         // Destroy the original large cube
         Destroy(gameObject);
-    }
-
-    // This method listens for input to trigger the explosion
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0)) // Left mouse click triggers the explosion
-        {
-            Explode();
-        }
     }
 }
