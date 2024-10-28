@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementCombined : MonoBehaviour
 {
-    //Movement Settings
+    // Movement Settings
     [SerializeField] private float speed = 5f; // Movement speed
     [SerializeField] private float jumpForce = 5f; // Force applied for jumping
     [SerializeField] private LayerMask groundLayer; // Layer used to detect the ground
@@ -15,6 +15,10 @@ public class PlayerMovementCombined : MonoBehaviour
     [SerializeField] private float dashCooldown = 1f; // Cooldown time between dashes
     private bool isDashing = false; // Track if the player is currently dashing
     private float lastDashTime = 0f; // Time when the last dash occurred
+
+    // Ability States
+    private bool isDoubleJumpActive = false; // Is double jump active
+    private bool isDashActive = false; // Is dash active
 
     private Vector3 movement; // Movement input
     private Rigidbody rb; // Rigidbody component
@@ -37,14 +41,14 @@ public class PlayerMovementCombined : MonoBehaviour
 
     private void OnJump(InputValue value)
     {
-        // Trigger jump or double jump request
+        // Handle jump or double jump only if double jump ability is active
         if (value.isPressed)
         {
             if (isGrounded) // First jump
             {
                 jumpRequest = true;
             }
-            else if (canDoubleJump) // Double jump
+            else if (isDoubleJumpActive && canDoubleJump) // Double jump only if active
             {
                 jumpRequest = true;
                 canDoubleJump = false; // Disable double jump after use
@@ -54,11 +58,40 @@ public class PlayerMovementCombined : MonoBehaviour
 
     private void OnDash(InputValue value)
     {
-        // Trigger dash request if input is pressed and cooldown is finished
-        if (value.isPressed && Time.time >= lastDashTime + dashCooldown && !isDashing)
+        // Handle dash only if dash ability is active
+        if (value.isPressed && isDashActive && Time.time >= lastDashTime + dashCooldown && !isDashing)
         {
             StartCoroutine(Dash());
         }
+    }
+
+    private void Update()
+    {
+        // Switch ability to double jump (J key)
+        if (Keyboard.current.jKey.wasPressedThisFrame)
+        {
+            ActivateDoubleJump();
+        }
+
+        // Switch ability to dash (K key)
+        if (Keyboard.current.kKey.wasPressedThisFrame)
+        {
+            ActivateDash();
+        }
+    }
+
+    private void ActivateDoubleJump()
+    {
+        isDoubleJumpActive = true;
+        isDashActive = false; // Disable dash when double jump is active
+        Debug.Log("Double Jump Activated");
+    }
+
+    private void ActivateDash()
+    {
+        isDashActive = true;
+        isDoubleJumpActive = false; // Disable double jump when dash is active
+        Debug.Log("Dash Activated");
     }
 
     private void FixedUpdate()
@@ -72,7 +105,7 @@ public class PlayerMovementCombined : MonoBehaviour
 
             // Set the y component to zero for flat movement
             forward.y = 0; 
-            right.y = 0; 
+            right.y = 0;
 
             // Normalize the directions
             forward.Normalize();
@@ -111,11 +144,16 @@ public class PlayerMovementCombined : MonoBehaviour
         // Enable the trail renderer
         trailRenderer.emitting = true;
 
-        // Apply dash force in the direction the player moved last
-        Camera camera = Camera.main; // Assuming there's only one main camera
-        Vector3 dashDirection = (camera.transform.forward * movement.z + camera.transform.right * movement.x).normalized;
-        dashDirection.y = 0; // Prevent vertical movement during dash
+        // Calculate dash direction based on player facing direction and input
+        Vector3 dashDirection = (transform.right * movement.x + transform.forward * movement.z).normalized;
 
+        if (dashDirection.magnitude == 0)
+        {
+            // Default to forward dash if no input is given
+            dashDirection = transform.forward;
+        }
+
+        // Apply dash force in the calculated dash direction
         rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
 
         yield return new WaitForSeconds(dashDuration); // Wait for the duration of the dash
