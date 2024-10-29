@@ -31,6 +31,8 @@ public class PlayerMovementCombined : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         trailRenderer = GetComponent<TrailRenderer>(); // Get the Trail Renderer
+        // Disable the trail renderer from beginning
+        trailRenderer.emitting = false;
     }
 
     private void OnMovement(InputValue value)
