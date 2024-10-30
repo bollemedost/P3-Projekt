@@ -3,7 +3,167 @@ guid: 017432a1ce17b45a88cf27dded296966
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 14___Default
+    second: {fileID: 2100000, guid: 5e456e9fc694e4ca3947a2373535189c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 4CAF50
+    second: {fileID: 2100000, guid: 4415f0016fcf24a18af5bec943cdbdbe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 795548
+    second: {fileID: 2100000, guid: bb89818513f3d4653a2ee82e72208be2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: F44336
+    second: {fileID: 2100000, guid: 2fe54152b236c416a82e6eef2a10fda5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 9f2cced4e0ddd44ffbc00f9bd0b76800, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 9433dcddb2274422a83d86c149eeb061, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None
+    second: {fileID: 2100000, guid: 7ebe2e4a539f84c0bb42280f1337b377, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None.001
+    second: {fileID: 2100000, guid: 0f10768e4fa3b4f65ad9e24d541bdaed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _trees_normal
+    second: {fileID: 2100000, guid: 66ee285f3f9b94132b9bce4bae548eae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cactus
+    second: {fileID: 2100000, guid: b9f7e404e3ba14b75a4df48fd2bc3579, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cactus spines
+    second: {fileID: 2100000, guid: 49fd27c5fe3c9439294b40069fb5b20c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ice
+    second: {fileID: 2100000, guid: fdddb0b0e27094b089fb2e7c4f494772, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ice 2
+    second: {fileID: 2100000, guid: 336fd643dc98a4ce7b083fc4c1d30683, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 368ef1f24485443caac41a3bbb931172, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2SG
+    second: {fileID: 2100000, guid: 037d14e20b1fb43e0affee1901340b5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat13
+    second: {fileID: 2100000, guid: 913e789df00a1494badf9e07b6bb3885, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat14
+    second: {fileID: 2100000, guid: 991e16fd408b845b28cf43573e28adba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat15
+    second: {fileID: 2100000, guid: 295f673aa61014be68537d45a1ce17c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat16
+    second: {fileID: 2100000, guid: a39c866f5ca284b5e8a4321ae311ca71, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat17
+    second: {fileID: 2100000, guid: 34e05cba706934bac8480280fd9b8ea1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat18
+    second: {fileID: 2100000, guid: 1046d5f1902c348d7b06d17b9dec2d6a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat20
+    second: {fileID: 2100000, guid: b77b0b466b0c3439fa9aa3ce4f8ea223, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat20.001
+    second: {fileID: 2100000, guid: a9c59b1bd5e5b4da6b6cde3d24d94b11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat21
+    second: {fileID: 2100000, guid: f959dd6f2a8344b669d0e570db8e4a73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mushroom bottom
+    second: {fileID: 2100000, guid: 44f4c48a987d8424c8ac997ec5aeaeea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mushroom top
+    second: {fileID: 2100000, guid: d4883e5c92cb54dd7aae422cac47a4aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pot
+    second: {fileID: 2100000, guid: 76f882ab38f684b55bb3d1ba93c88f7a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: snow
+    second: {fileID: 2100000, guid: 1e9d2722843424f0d8077422aa92439f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: snow.001
+    second: {fileID: 2100000, guid: 1bb68594321444f3b934a91c552b42a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stone
+    second: {fileID: 2100000, guid: 4f461f64f14c241438709ad7025df051, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tree green
+    second: {fileID: 2100000, guid: 7d150ff4e2e264b61a03ca44abb694ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: bf47335560a214e9187d02de95f7e221, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
