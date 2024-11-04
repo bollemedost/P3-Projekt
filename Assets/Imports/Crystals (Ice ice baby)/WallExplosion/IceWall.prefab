@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5648748941807350530}
   - component: {fileID: 4913394193429939053}
   - component: {fileID: 8740105301170006334}
-  - component: {fileID: 533080234154426731}
+  - component: {fileID: -8171270926160040708}
   m_Layer: 0
   m_Name: IceWall
   m_TagString: Untagged
@@ -106,30 +106,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &533080234154426731
-Rigidbody:
+--- !u!114 &-8171270926160040708
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2627739815301796969}
-  serializedVersion: 4
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa8af610a37d4fd0a7db8869baf7628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeFragmentPrefab: {fileID: 1116653504378636410, guid: 1d9302a9cf9f44b4ab62a2e9da7a2313, type: 3}
+  fragmentsPerAxis: 12
+  explosionForce: 300
+  explosionRadius: 100
+  minDestroyTime: 2
+  maxDestroyTime: 7
+  triggerDistance: 3
+  fragmentForceMultiplier: 0.03
