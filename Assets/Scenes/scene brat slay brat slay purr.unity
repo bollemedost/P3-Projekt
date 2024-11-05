@@ -5753,7 +5753,7 @@ Transform:
   m_GameObject: {fileID: 1174922003}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.49999997, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 148.79, y: -1.86, z: 8.85}
+  m_LocalPosition: {x: 148.04, y: -1.86, z: 8.53}
   m_LocalScale: {x: 1.36, y: 2.9660037, z: 6.095144}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -19004,7 +19004,7 @@ GameObject:
   - component: {fileID: 7668739906231943432}
   - component: {fileID: 8976861933089878342}
   - component: {fileID: 8976861933089878343}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wooden plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
