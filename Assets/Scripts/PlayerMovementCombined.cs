@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement; // Required for scene management
+using UnityEngine.SceneManagement;
 
 public class PlayerMovementCombined : MonoBehaviour
 {
@@ -30,6 +30,13 @@ public class PlayerMovementCombined : MonoBehaviour
 
     private int currentLevel = 1; // Default level
 
+    // Constants for level restrictions
+    private const int Level2Unlock = 2; // Level where Dash unlocks
+    private const int Level3Unlock = 3; // Level where Smash unlocks
+
+    // Constants for grounded raycast
+    private const float GroundCheckDistance = 1.1f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -45,11 +52,11 @@ public class PlayerMovementCombined : MonoBehaviour
 
         if (activeSceneName == "scene brat slay brat slay purr")
         {
-            currentLevel = 2; // Set level 2
+            currentLevel = Level2Unlock; // Set level 2
         }
         else if (activeSceneName == "Level 3 - Emil")
         {
-            currentLevel = 3; // Set level 3
+            currentLevel = Level3Unlock; // Set level 3
         }
         else
         {
@@ -103,13 +110,13 @@ public class PlayerMovementCombined : MonoBehaviour
             StartCoroutine(HandleHandSign("DoubleJump"));
         }
 
-        if (currentLevel >= 2 && Keyboard.current.kKey.wasPressedThisFrame)
+        if (currentLevel >= Level2Unlock && Keyboard.current.kKey.wasPressedThisFrame)
         {
             UnityEngine.Debug.Log("K Key Pressed");
             StartCoroutine(HandleHandSign("Dash"));
         }
 
-        if (currentLevel >= 3 && Keyboard.current.lKey.wasPressedThisFrame)
+        if (currentLevel >= Level3Unlock && Keyboard.current.lKey.wasPressedThisFrame)
         {
             UnityEngine.Debug.Log("L Key Pressed");
             StartCoroutine(HandleHandSign("Smash"));
@@ -149,7 +156,8 @@ public class PlayerMovementCombined : MonoBehaviour
     private string LaunchPythonAndGetAction()
     {
         string pythonPath = "python"; // Ensure Python is in your system's PATH
-        string scriptPath = @"C:\Users\tamas\Desktop\P3 project\P3-Projekt\Assets\PythonScript\Hand_detection.py";
+        string projectPath = Application.dataPath; // Path to the Assets folder
+        string scriptPath = Path.Combine(projectPath, "PythonScript", "Hand_detection.py"); // Dynamically locate the Python script
 
         UnityEngine.Debug.Log($"Executing Python script at: {scriptPath}");
 
@@ -261,6 +269,6 @@ public class PlayerMovementCombined : MonoBehaviour
 
     private bool CheckGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, 1.1f, groundLayer);
+        return Physics.Raycast(transform.position, Vector3.down, GroundCheckDistance, groundLayer);
     }
 }
