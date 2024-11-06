@@ -1,6 +1,9 @@
 using System.Collections;
+using System.Diagnostics;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement; // Required for scene management
 
 public class PlayerMovementCombined : MonoBehaviour
 {
@@ -25,11 +28,35 @@ public class PlayerMovementCombined : MonoBehaviour
     private bool canDoubleJump;
     private TrailRenderer trailRenderer;
 
+    private int currentLevel = 1; // Default level
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.emitting = false;
+
+        SetLevelBasedOnScene(); // Automatically set level based on active scene
+    }
+
+    private void SetLevelBasedOnScene()
+    {
+        string activeSceneName = SceneManager.GetActiveScene().name;
+
+        if (activeSceneName == "scene brat slay brat slay purr")
+        {
+            currentLevel = 2; // Set level 2
+        }
+        else if (activeSceneName == "Level 3 - Emil")
+        {
+            currentLevel = 3; // Set level 3
+        }
+        else
+        {
+            currentLevel = 1; // Default to level 1
+        }
+
+        UnityEngine.Debug.Log($"Active Scene: {activeSceneName}, Current Level: {currentLevel}");
     }
 
     private void OnMovement(InputValue value)
@@ -69,29 +96,105 @@ public class PlayerMovementCombined : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.jKey.wasPressedThisFrame)
+        // Check level restrictions
+        if (currentLevel >= 1 && Keyboard.current.jKey.wasPressedThisFrame)
         {
-            ActivateDoubleJump();
+            UnityEngine.Debug.Log("J Key Pressed");
+            StartCoroutine(HandleHandSign("DoubleJump"));
         }
 
-        if (Keyboard.current.kKey.wasPressedThisFrame)
+        if (currentLevel >= 2 && Keyboard.current.kKey.wasPressedThisFrame)
         {
-            ActivateDash();
+            UnityEngine.Debug.Log("K Key Pressed");
+            StartCoroutine(HandleHandSign("Dash"));
         }
+
+        if (currentLevel >= 3 && Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            UnityEngine.Debug.Log("L Key Pressed");
+            StartCoroutine(HandleHandSign("Smash"));
+        }
+    }
+
+    private IEnumerator HandleHandSign(string action)
+    {
+        UnityEngine.Debug.Log($"HandleHandSign called for action: {action}");
+        string detectedAction = LaunchPythonAndGetAction();
+
+        if (detectedAction == action)
+        {
+            UnityEngine.Debug.Log($"Action Detected: {detectedAction}");
+            if (action == "DoubleJump")
+            {
+                ActivateDoubleJump();
+            }
+            else if (action == "Dash")
+            {
+                ActivateDash();
+            }
+            else if (action == "Smash")
+            {
+                UnityEngine.Debug.Log("Smash Activated");
+                // Add Smash functionality here if required
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.Log($"No matching action detected. Received: {detectedAction}");
+        }
+
+        yield return null;
+    }
+
+    private string LaunchPythonAndGetAction()
+    {
+        string pythonPath = "python"; // Ensure Python is in your system's PATH
+        string scriptPath = @"C:\Users\tamas\Desktop\P3 project\P3-Projekt\Assets\PythonScript\Hand_detection.py";
+
+        UnityEngine.Debug.Log($"Executing Python script at: {scriptPath}");
+
+        ProcessStartInfo psi = new ProcessStartInfo
+        {
+            FileName = pythonPath,
+            Arguments = $"\"{scriptPath}\"", // Ensure paths with spaces are handled
+            RedirectStandardOutput = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+
+        string detectedAction = "";
+        try
+        {
+            using (Process process = Process.Start(psi))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    detectedAction = reader.ReadToEnd().Trim();
+                }
+            }
+
+            UnityEngine.Debug.Log($"Python Script Output: {detectedAction}");
+        }
+        catch (System.Exception e)
+        {
+            UnityEngine.Debug.LogError($"Error running Python script: {e.Message}");
+        }
+
+        return detectedAction;
     }
 
     private void ActivateDoubleJump()
     {
         isDoubleJumpActive = true;
         isDashActive = false;
-        Debug.Log("Double Jump Activated");
+        UnityEngine.Debug.Log("Double Jump Activated");
     }
 
     private void ActivateDash()
     {
         isDashActive = true;
         isDoubleJumpActive = false;
-        Debug.Log("Dash Activated");
+        UnityEngine.Debug.Log("Dash Activated");
     }
 
     private void FixedUpdate()
@@ -136,7 +239,7 @@ public class PlayerMovementCombined : MonoBehaviour
         trailRenderer.emitting = true;
 
         Vector3 dashDirection;
-        
+
         // Use the last movement direction as the dash direction
         if (lastMovementDirection != Vector3.zero)
         {
