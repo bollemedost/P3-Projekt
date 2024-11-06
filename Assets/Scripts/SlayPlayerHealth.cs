@@ -9,7 +9,7 @@ public class SlayPlayerHealth : MonoBehaviour
     public int currentHealth;
     public Slider healthBar;
     public GameObject gameOverScreen;
-    public Button restartButton;
+    //public Button restartButton;
 
     private Vector3 lastCheckpointPosition;
 
@@ -27,7 +27,7 @@ public class SlayPlayerHealth : MonoBehaviour
 
         // Hide the Game Over screen at the start
         gameOverScreen.SetActive(false);
-        restartButton.onClick.AddListener(RestartGame);
+        //restartButton.onClick.AddListener(RestartGame);
 
         // Set initial checkpoint to the player's starting position
         lastCheckpointPosition = transform.position;
