@@ -31,7 +31,7 @@ public class SlayPlayerMovementCombined : MonoBehaviour
     [SerializeField] private Transform cameraPivot; // The pivot point for rotating the camera
     [SerializeField] private float rotationSpeed = 5f; // Speed of camera rotation
     [SerializeField] private float sensitivity = 0.5f; // Camera sensitivity to control rotation responsiveness
-    [SerializeField] private float smoothTime = 0.1f; // Time for smooth damp effect
+    //[SerializeField] private float smoothTime = 0.1f; // Time for smooth damp effect
     private float cameraYaw; // Yaw rotation for left/right
     private float cameraPitch; // Pitch rotation for up/down
     private float targetYaw; // Target yaw for smoother transition

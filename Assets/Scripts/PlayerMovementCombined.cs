@@ -54,9 +54,9 @@ public class PlayerMovementCombined : MonoBehaviour
         {
             currentLevel = Level2Unlock; // Set level 2
         }
-        else if (activeSceneName == "Level 3 - Emil")
+        else if (activeSceneName == "Level 3 - Emil" || activeSceneName == "Level 4 - Aioli")
         {
-            currentLevel = Level3Unlock; // Set level 3
+            currentLevel = Level3Unlock; // Set level 3 for Level 3 and Level 4
         }
         else
         {
