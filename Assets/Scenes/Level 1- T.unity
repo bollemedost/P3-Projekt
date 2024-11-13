@@ -12785,7 +12785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c61df152e0c4494089c6de579cf869a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Level Completed
+  levelIndex: 1
 --- !u!1 &1285281557
 GameObject:
   m_ObjectHideFlags: 0
@@ -22512,15 +22512,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4659847592994607002, guid: d9d98e1acbefe472b8e78d04071c0bd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.07
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4659847592994607002, guid: d9d98e1acbefe472b8e78d04071c0bd3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3
+      value: 31.06
       objectReference: {fileID: 0}
     - target: {fileID: 4659847592994607002, guid: d9d98e1acbefe472b8e78d04071c0bd3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.22
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 4659847592994607002, guid: d9d98e1acbefe472b8e78d04071c0bd3, type: 3}
       propertyPath: m_LocalRotation.w

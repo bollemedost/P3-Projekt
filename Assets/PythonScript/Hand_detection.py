@@ -40,7 +40,7 @@ def count_spaces(binary_image):
     return count + 1
 
 # Use DroidCam stream
-cap = cv2.VideoCapture('http://172.20.10.13:4747/video')
+cap = cv2.VideoCapture('http://172.20.10.8:4747/video')
 
 # Variables to track consistent detection
 consistent_sign = None
