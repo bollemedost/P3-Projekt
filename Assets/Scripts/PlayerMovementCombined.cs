@@ -30,6 +30,8 @@ public class PlayerMovementCombined : MonoBehaviour
 
     private int currentLevel = 1; // Default level
 
+    [SerializeField] private CubeExplosion cubeExplosion; // Reference to the CubeExplosion script
+
     // Constants for level restrictions
     private const int Level2Unlock = 2; // Level where Dash unlocks
     private const int Level3Unlock = 3; // Level where Smash unlocks
@@ -142,7 +144,7 @@ public class PlayerMovementCombined : MonoBehaviour
             else if (action == "Smash")
             {
                 UnityEngine.Debug.Log("Smash Activated");
-                // Add Smash functionality here if required
+                TriggerSmash();
             }
         }
         else
@@ -155,7 +157,7 @@ public class PlayerMovementCombined : MonoBehaviour
 
     private string LaunchPythonAndGetAction()
     {
-        string pythonPath = "/opt/anaconda3/bin/python3"; // Ensure Python is in your system's PATH
+        string pythonPath = "python"; // Ensure Python is in your system's PATH
         string projectPath = Application.dataPath; // Path to the Assets folder
         string scriptPath = Path.Combine(projectPath, "PythonScript", "Hand_detection.py"); // Dynamically locate the Python script
 
@@ -203,6 +205,18 @@ public class PlayerMovementCombined : MonoBehaviour
         isDashActive = true;
         isDoubleJumpActive = false;
         UnityEngine.Debug.Log("Dash Activated");
+    }
+
+    private void TriggerSmash()
+    {
+        if (cubeExplosion != null)
+        {
+            cubeExplosion.Explode();
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("CubeExplosion reference is missing!");
+        }
     }
 
     private void FixedUpdate()

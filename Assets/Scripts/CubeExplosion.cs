@@ -29,7 +29,7 @@ public class CubeExplosion : MonoBehaviour
     private void Update()
     {
         // Check if the player is close enough and the left mouse button is pressed
-        if (playerMovement != null && IsPlayerInRange() && Input.GetMouseButtonDown(0))
+        if (playerMovement != null && IsPlayerInRange() && Input.GetKeyDown(KeyCode.E))
         {
             Explode();
         }
