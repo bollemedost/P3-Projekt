@@ -4,22 +4,18 @@ using UnityEngine.SceneManagement;
 public class TriggerSceneChanger : MonoBehaviour
 {
     public int levelIndex; // The index of the level this collider is linked to
-    public int requiredLevelIndex; // The index of the required level for this level to be accessible (dynamic based on the level)
+    public int requiredLevelIndex; // The index of the required level for this level to be accessible
 
     private bool playerInTrigger = false;
 
     private void Start()
     {
-        // Set required level based on level index
-        requiredLevelIndex = levelIndex - 1; // The required level for level N is level N-1
-
-        // You might need to initialize PlayerPrefs for testing purposes:
-        // PlayerPrefs.DeleteAll(); // Clear all PlayerPrefs data
+        requiredLevelIndex = levelIndex - 1;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("2D Player"))
         {
             playerInTrigger = true;
 
@@ -39,7 +35,7 @@ public class TriggerSceneChanger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("2D Player"))
         {
             playerInTrigger = false;
         }
@@ -53,6 +49,14 @@ public class TriggerSceneChanger : MonoBehaviour
 
             if (hasCompletedRequiredLevel || levelIndex == 1) // Level 1 is always accessible
             {
+                // Save player's position ONLY when entering a level from the map
+                Vector3 playerPosition = GameObject.FindGameObjectWithTag("2D Player").transform.position;
+                PlayerPrefs.SetFloat("PlayerPosX", playerPosition.x);
+                PlayerPrefs.SetFloat("PlayerPosY", playerPosition.y);
+                PlayerPrefs.SetFloat("PlayerPosZ", playerPosition.z);
+                PlayerPrefs.Save();
+
+                // Load the level
                 Debug.Log("Loading level " + levelIndex);
                 SceneManager.LoadScene(levelIndex);
             }

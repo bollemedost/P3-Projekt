@@ -9,6 +9,7 @@ TagManager:
   - RotatePlatformNormal
   - RotatePlatformRight
   - Collectable
+  - 2D Player
   layers:
   - Default
   - TransparentFX
