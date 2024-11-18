@@ -9,7 +9,6 @@ public class SlayPlayerHealth : MonoBehaviour
     public int currentHealth;
     public Slider healthBar;
     public GameObject gameOverScreen;
-    //public Button restartButton;
 
     private Vector3 lastCheckpointPosition;
 
@@ -21,22 +20,22 @@ public class SlayPlayerHealth : MonoBehaviour
 
     void Start()
     {
+        // Initialize health
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
 
-        // Hide the Game Over screen at the start
+        // Hide Game Over screen
         gameOverScreen.SetActive(false);
-        //restartButton.onClick.AddListener(RestartGame);
-
-        // Set initial checkpoint to the player's starting position
-        lastCheckpointPosition = transform.position;
 
         // Store the original color for flashing effect
         if (playerRenderer != null)
         {
             originalColor = playerRenderer.material.color;
         }
+
+        // Set the checkpoint to the player's initial position at the start
+        lastCheckpointPosition = transform.position;
     }
 
     public void TakeDamage(int damage)
@@ -65,30 +64,19 @@ public class SlayPlayerHealth : MonoBehaviour
     void Die()
     {
         gameOverScreen.SetActive(true); // Show Game Over screen
-        StartCoroutine(ReloadSceneAfterDelay(0.3f)); // Reload scene after a x-second delay
+        StartCoroutine(ReloadSceneAfterDelay(1f)); // Reload scene after delay
     }
 
     private IEnumerator ReloadSceneAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload the current scene
-    }
-
-    void RestartGame()
-    {
-        gameOverScreen.SetActive(false);
         RespawnAtCheckpoint();
-
-        // Reset all sleigh objects
-        foreach (Sleigh sleigh in FindObjectsOfType<Sleigh>())
-        {
-            sleigh.ResetPosition();
-        }
     }
 
     public void SetCheckpoint(Vector3 checkpointPosition)
     {
         lastCheckpointPosition = checkpointPosition;
+        Debug.Log("Checkpoint updated to: " + checkpointPosition);
     }
 
     void RespawnAtCheckpoint()
@@ -96,6 +84,7 @@ public class SlayPlayerHealth : MonoBehaviour
         transform.position = lastCheckpointPosition;
         currentHealth = maxHealth;
         healthBar.value = currentHealth;
+        gameOverScreen.SetActive(false); // Hide Game Over screen
     }
 
     // Screen Shake Coroutine
@@ -118,21 +107,17 @@ public class SlayPlayerHealth : MonoBehaviour
         transform.position = originalPosition;
     }
 
-    
     // Flash Red Coroutine
     private IEnumerator FlashRed()
     {
         if (playerRenderer != null)
         {
-            // Store the current color directly before flashing
-            originalColor = playerRenderer.material.color;
-
             // Flash to red
             playerRenderer.material.color = Color.red;
             yield return new WaitForSeconds(0.1f); // Keep red for a moment
 
-            // Flash to the stored original color
-            playerRenderer.material.color = originalColor; // Restore original color
+            // Restore original color
+            playerRenderer.material.color = originalColor;
         }
     }
 }
