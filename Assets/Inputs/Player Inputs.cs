@@ -75,7 +75,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""3D Vector"",
+                    ""name"": ""Keyboard"",
                     ""id"": ""5357181a-48e2-417a-bc70-48b6340c53c3"",
                     ""path"": ""3DVector"",
                     ""interactions"": """",
@@ -130,7 +130,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""3D Vector"",
+                    ""name"": ""Controller"",
                     ""id"": ""b9d3a207-3f77-48cb-b43f-3cb69f6d1c74"",
                     ""path"": ""3DVector"",
                     ""interactions"": """",
@@ -220,7 +220,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ab17b801-768f-413e-8cef-2083a388f19e"",
-                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -264,7 +264,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f57c5182-aa9c-49fd-a1d5-c9570cb3ffde"",
-                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
