@@ -123,6 +123,7 @@ public class PlayerMovementCombined : MonoBehaviour
         if (currentLevel >= Level2Unlock)
         {
             CheckInputAction("Smash");
+            CheckInputAction("DoubleJump");
         }
     }
 
