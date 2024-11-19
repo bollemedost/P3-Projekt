@@ -1,16 +1,42 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; // For UI components if using Image instead of SpriteRenderer
 
 public class TriggerSceneChanger : MonoBehaviour
 {
     public int levelIndex; // The index of the level this collider is linked to
     public int requiredLevelIndex; // The index of the required level for this level to be accessible
+    public GameObject popUpPanel; // Reference to the UI Panel
+    public Text popUpText; // Reference to the Text inside the Panel
+    public Sprite completedSprite; // Sprite to display when level is completed
+    public Image levelUIImage; // Optional: If using UI Image for the map
 
     private bool playerInTrigger = false;
 
     private void Start()
     {
         requiredLevelIndex = levelIndex - 1;
+
+        // Check if the level is already completed and update the sprite
+        if (PlayerPrefs.GetInt("Level" + levelIndex + "Completed", 0) == 1)
+        {
+            UpdateLevelSprite();
+        }
+
+        // Ensure the pop-up is hidden initially
+        if (popUpPanel != null)
+            popUpPanel.SetActive(false);
+    }
+
+    private void UpdateLevelSprite()
+    {
+        if (completedSprite != null)
+        {
+            if (levelUIImage != null)
+            {
+                levelUIImage.sprite = completedSprite; // Change the sprite for UI Image
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,11 +50,11 @@ public class TriggerSceneChanger : MonoBehaviour
 
             if (hasCompletedRequiredLevel || levelIndex == 1) // Level 1 is always accessible
             {
-                Debug.Log($"Player entered level {levelIndex} trigger. Press 'X' to enter level.");
+                ShowPopUp($"Press 'X' to enter level.");
             }
             else
             {
-                Debug.Log($"Level {levelIndex} is locked. Complete level {requiredLevelIndex} first.");
+                ShowPopUp($"This level is locked.");
             }
         }
     }
@@ -38,6 +64,10 @@ public class TriggerSceneChanger : MonoBehaviour
         if (other.CompareTag("2D Player"))
         {
             playerInTrigger = false;
+
+            // Hide pop-up when the player leaves
+            if (popUpPanel != null)
+                popUpPanel.SetActive(false);
         }
     }
 
@@ -56,14 +86,30 @@ public class TriggerSceneChanger : MonoBehaviour
                 PlayerPrefs.SetFloat("PlayerPosZ", playerPosition.z);
                 PlayerPrefs.Save();
 
+                // Mark this level as completed for later
+                PlayerPrefs.SetInt("Level" + levelIndex + "Completed", 1);
+                PlayerPrefs.Save();
+
+                // Update the sprite to the completed version
+                UpdateLevelSprite();
+
                 // Load the level
                 Debug.Log("Loading level " + levelIndex);
                 SceneManager.LoadScene(levelIndex);
             }
             else
             {
-                Debug.Log($"You must complete level {requiredLevelIndex} before accessing this level.");
+                ShowPopUp($"Complete another level first.");
             }
+        }
+    }
+
+    private void ShowPopUp(string message)
+    {
+        if (popUpPanel != null && popUpText != null)
+        {
+            popUpPanel.SetActive(true);
+            popUpText.text = message;
         }
     }
 }
