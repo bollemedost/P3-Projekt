@@ -28,8 +28,8 @@ public class CubeExplosion : MonoBehaviour
 
     private void Update()
     {
-        // Check if the player is close enough and the left mouse button is pressed
-        if (playerMovement != null && IsPlayerInRange() && Input.GetKeyDown(KeyCode.E))
+        // Check if the player is close enough, the left mouse button is pressed, and Smash is activated
+        if (playerMovement != null && IsPlayerInRange() && Input.GetKeyDown(KeyCode.E) && playerMovement.IsSmashActive())
         {
             Explode();
         }
@@ -76,7 +76,6 @@ public class CubeExplosion : MonoBehaviour
                     Vector3 forceDirection = (fragment.transform.position - playerMovement.transform.position).normalized;
                     float randomMultiplier = Random.Range(0.8f, 1.2f);
                     rb.AddForce(forceDirection * explosionForce * fragmentForceMultiplier * randomMultiplier, ForceMode.Impulse);
-
 
                     // Randomize the destruction time for each fragment between minDestroyTime and maxDestroyTime
                     float randomDestroyTime = Random.Range(minDestroyTime, maxDestroyTime);
