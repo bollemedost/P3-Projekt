@@ -46,7 +46,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""DashKey"",
                     ""type"": ""Button"",
                     ""id"": ""50c262d0-ffbd-4238-8be8-3332b9066664"",
                     ""expectedControlType"": ""Button"",
@@ -64,9 +64,36 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Smash"",
+                    ""name"": ""SmashKey"",
                     ""type"": ""Button"",
                     ""id"": ""8ffc3023-6b73-4656-880c-ea3147a73296"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Smash"",
+                    ""type"": ""Button"",
+                    ""id"": ""344bb7ed-cc64-4635-ac6b-81ecd569ac03"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e416281-da83-45a5-93c6-dfa3c6bc4182"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DoubleJump"",
+                    ""type"": ""Button"",
+                    ""id"": ""348379e6-4a70-489d-8ac5-0a8e34a9c942"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -213,7 +240,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Dash"",
+                    ""action"": ""DashKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -224,7 +251,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Dash"",
+                    ""action"": ""DashKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -257,7 +284,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Smash"",
+                    ""action"": ""SmashKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -268,7 +295,73 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""SmashKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fa028ad-d87a-43eb-ba23-0862240027ad"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Smash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""020a36a3-4176-45b1-8deb-5dc18e1e4940"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Smash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee80810a-60ea-4e01-9d6f-1356f9b85bc9"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ace85527-aa9e-4018-bb51-2209cc9b6c5d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3a68544-f30d-49a6-a054-1f451fccfbc9"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DoubleJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed628909-b4fb-4c36-bd56-4a9a937f246f"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DoubleJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -281,9 +374,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
         m_InGame_Movement = m_InGame.FindAction("Movement", throwIfNotFound: true);
         m_InGame_Jump = m_InGame.FindAction("Jump", throwIfNotFound: true);
-        m_InGame_Dash = m_InGame.FindAction("Dash", throwIfNotFound: true);
+        m_InGame_DashKey = m_InGame.FindAction("DashKey", throwIfNotFound: true);
         m_InGame_Look = m_InGame.FindAction("Look", throwIfNotFound: true);
+        m_InGame_SmashKey = m_InGame.FindAction("SmashKey", throwIfNotFound: true);
         m_InGame_Smash = m_InGame.FindAction("Smash", throwIfNotFound: true);
+        m_InGame_Dash = m_InGame.FindAction("Dash", throwIfNotFound: true);
+        m_InGame_DoubleJump = m_InGame.FindAction("DoubleJump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -347,18 +443,24 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private List<IInGameActions> m_InGameActionsCallbackInterfaces = new List<IInGameActions>();
     private readonly InputAction m_InGame_Movement;
     private readonly InputAction m_InGame_Jump;
-    private readonly InputAction m_InGame_Dash;
+    private readonly InputAction m_InGame_DashKey;
     private readonly InputAction m_InGame_Look;
+    private readonly InputAction m_InGame_SmashKey;
     private readonly InputAction m_InGame_Smash;
+    private readonly InputAction m_InGame_Dash;
+    private readonly InputAction m_InGame_DoubleJump;
     public struct InGameActions
     {
         private @PlayerInputs m_Wrapper;
         public InGameActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_InGame_Movement;
         public InputAction @Jump => m_Wrapper.m_InGame_Jump;
-        public InputAction @Dash => m_Wrapper.m_InGame_Dash;
+        public InputAction @DashKey => m_Wrapper.m_InGame_DashKey;
         public InputAction @Look => m_Wrapper.m_InGame_Look;
+        public InputAction @SmashKey => m_Wrapper.m_InGame_SmashKey;
         public InputAction @Smash => m_Wrapper.m_InGame_Smash;
+        public InputAction @Dash => m_Wrapper.m_InGame_Dash;
+        public InputAction @DoubleJump => m_Wrapper.m_InGame_DoubleJump;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -374,15 +476,24 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Dash.started += instance.OnDash;
-            @Dash.performed += instance.OnDash;
-            @Dash.canceled += instance.OnDash;
+            @DashKey.started += instance.OnDashKey;
+            @DashKey.performed += instance.OnDashKey;
+            @DashKey.canceled += instance.OnDashKey;
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @SmashKey.started += instance.OnSmashKey;
+            @SmashKey.performed += instance.OnSmashKey;
+            @SmashKey.canceled += instance.OnSmashKey;
             @Smash.started += instance.OnSmash;
             @Smash.performed += instance.OnSmash;
             @Smash.canceled += instance.OnSmash;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
+            @DoubleJump.started += instance.OnDoubleJump;
+            @DoubleJump.performed += instance.OnDoubleJump;
+            @DoubleJump.canceled += instance.OnDoubleJump;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -393,15 +504,24 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Dash.started -= instance.OnDash;
-            @Dash.performed -= instance.OnDash;
-            @Dash.canceled -= instance.OnDash;
+            @DashKey.started -= instance.OnDashKey;
+            @DashKey.performed -= instance.OnDashKey;
+            @DashKey.canceled -= instance.OnDashKey;
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @SmashKey.started -= instance.OnSmashKey;
+            @SmashKey.performed -= instance.OnSmashKey;
+            @SmashKey.canceled -= instance.OnSmashKey;
             @Smash.started -= instance.OnSmash;
             @Smash.performed -= instance.OnSmash;
             @Smash.canceled -= instance.OnSmash;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
+            @DoubleJump.started -= instance.OnDoubleJump;
+            @DoubleJump.performed -= instance.OnDoubleJump;
+            @DoubleJump.canceled -= instance.OnDoubleJump;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -423,8 +543,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
+        void OnDashKey(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnSmashKey(InputAction.CallbackContext context);
         void OnSmash(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnDoubleJump(InputAction.CallbackContext context);
     }
 }
