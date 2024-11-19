@@ -30,6 +30,7 @@ public class PlayerMovementCombined : MonoBehaviour
     private TrailRenderer trailRenderer;
 
     private int currentLevel = 1; // Default level
+    private PlayerInput playerInput;
 
     [SerializeField] private CubeExplosion cubeExplosion; // Reference to the CubeExplosion script
 
@@ -45,6 +46,7 @@ public class PlayerMovementCombined : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.emitting = false;
+        playerInput = GetComponent<PlayerInput>();
 
         SetLevelBasedOnScene(); // Automatically set level based on active scene
     }
@@ -107,30 +109,33 @@ public class PlayerMovementCombined : MonoBehaviour
     private void Update()
     {
         // Check level restrictions
-        if (currentLevel == 1 && Keyboard.current.jKey.wasPressedThisFrame)
+        if (currentLevel == 1)
         {
-            UnityEngine.Debug.Log("J Key Pressed");
-            StartCoroutine(HandleHandSign("DoubleJump"));
+            CheckInputAction("DoubleJump");
         }
 
-        if (currentLevel == Level3Unlock && Keyboard.current.jKey.wasPressedThisFrame)
+        if (currentLevel == Level3Unlock)
         {
-            UnityEngine.Debug.Log("J Key Pressed");
-            StartCoroutine(HandleHandSign("DoubleJump"));
+            CheckInputAction("DoubleJump");
+            CheckInputAction("Dash");
         }
 
-        if (currentLevel == Level3Unlock && Keyboard.current.kKey.wasPressedThisFrame)
+        if (currentLevel >= Level2Unlock)
         {
-            UnityEngine.Debug.Log("K Key Pressed");
-            StartCoroutine(HandleHandSign("Dash"));
-        }
-
-        if (currentLevel >= Level2Unlock && Keyboard.current.lKey.wasPressedThisFrame)
-        {
-            UnityEngine.Debug.Log("L Key Pressed");
-            StartCoroutine(HandleHandSign("Smash"));
+            CheckInputAction("Smash");
         }
     }
+
+    private void CheckInputAction(string actionName)
+    {
+        // Check if the input action is triggered (pressed) based on the player's input device (keyboard, controller, etc.)
+        if (playerInput.actions[actionName].triggered)
+        {
+            UnityEngine.Debug.Log($"{actionName} action triggered");
+            StartCoroutine(HandleHandSign(actionName));
+        }
+    }
+    
 
     private IEnumerator HandleHandSign(string action)
     {
