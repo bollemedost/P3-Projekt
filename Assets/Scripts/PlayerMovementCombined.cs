@@ -19,6 +19,7 @@ public class PlayerMovementCombined : MonoBehaviour
 
     private bool isDoubleJumpActive = false;
     private bool isDashActive = false;
+    private bool isSmashActive = false; // New field for Smash action
 
     private Vector3 movement;
     private Vector3 lastMovementDirection; // Store last movement direction
@@ -150,7 +151,7 @@ public class PlayerMovementCombined : MonoBehaviour
             else if (action == "Smash")
             {
                 UnityEngine.Debug.Log("Smash Activated");
-                TriggerSmash();
+                ActivateSmash(); // Activate Smash
             }
         }
         else
@@ -203,6 +204,7 @@ public class PlayerMovementCombined : MonoBehaviour
     {
         isDoubleJumpActive = true;
         isDashActive = false;
+        isSmashActive = false;
         UnityEngine.Debug.Log("Double Jump Activated");
     }
 
@@ -210,19 +212,21 @@ public class PlayerMovementCombined : MonoBehaviour
     {
         isDashActive = true;
         isDoubleJumpActive = false;
+        isSmashActive = false;
         UnityEngine.Debug.Log("Dash Activated");
     }
 
-    private void TriggerSmash()
+    private void ActivateSmash()
     {
-        if (cubeExplosion != null)
-        {
-            cubeExplosion.Explode();
-        }
-        else
-        {
-            UnityEngine.Debug.LogError("CubeExplosion reference is missing!");
-        }
+        isSmashActive = true;
+        isDoubleJumpActive = false;
+        isDashActive = false;
+        UnityEngine.Debug.Log("Smash Activated");
+    }
+
+    public bool IsSmashActive()
+    {
+        return isSmashActive;
     }
 
     private void FixedUpdate()
