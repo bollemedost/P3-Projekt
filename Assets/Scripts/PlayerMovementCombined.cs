@@ -33,8 +33,8 @@ public class PlayerMovementCombined : MonoBehaviour
     [SerializeField] private CubeExplosion cubeExplosion; // Reference to the CubeExplosion script
 
     // Constants for level restrictions
-    private const int Level2Unlock = 2; // Level where Dash unlocks
-    private const int Level3Unlock = 3; // Level where Smash unlocks
+    private const int Level2Unlock = 2; // Level where Smash unlocks (Level 3 - Emil)
+    private const int Level3Unlock = 3; // Level where all actions unlock (scene brat slay brat slay purr and Level 4 - Aioli)
 
     // Constants for grounded raycast
     private const float GroundCheckDistance = 1.1f;
@@ -52,11 +52,11 @@ public class PlayerMovementCombined : MonoBehaviour
     {
         string activeSceneName = SceneManager.GetActiveScene().name;
 
-        if (activeSceneName == "scene brat slay brat slay purr")
+        if (activeSceneName == "Level 3 - Emil")
         {
             currentLevel = Level2Unlock; // Set level 2
         }
-        else if (activeSceneName == "Level 3 - Emil" || activeSceneName == "Level 4 - Aioli")
+        else if (activeSceneName == "scene brat slay brat slay purr" || activeSceneName == "Level 4 - Aioli")
         {
             currentLevel = Level3Unlock; // Set level 3 for Level 3 and Level 4
         }
@@ -106,19 +106,25 @@ public class PlayerMovementCombined : MonoBehaviour
     private void Update()
     {
         // Check level restrictions
-        if (currentLevel >= 1 && Keyboard.current.jKey.wasPressedThisFrame)
+        if (currentLevel == 1 && Keyboard.current.jKey.wasPressedThisFrame)
         {
             UnityEngine.Debug.Log("J Key Pressed");
             StartCoroutine(HandleHandSign("DoubleJump"));
         }
 
-        if (currentLevel >= Level2Unlock && Keyboard.current.kKey.wasPressedThisFrame)
+        if (currentLevel == Level3Unlock && Keyboard.current.jKey.wasPressedThisFrame)
+        {
+            UnityEngine.Debug.Log("J Key Pressed");
+            StartCoroutine(HandleHandSign("DoubleJump"));
+        }
+
+        if (currentLevel == Level3Unlock && Keyboard.current.kKey.wasPressedThisFrame)
         {
             UnityEngine.Debug.Log("K Key Pressed");
             StartCoroutine(HandleHandSign("Dash"));
         }
 
-        if (currentLevel >= Level3Unlock && Keyboard.current.lKey.wasPressedThisFrame)
+        if (currentLevel >= Level2Unlock && Keyboard.current.lKey.wasPressedThisFrame)
         {
             UnityEngine.Debug.Log("L Key Pressed");
             StartCoroutine(HandleHandSign("Smash"));
