@@ -74,7 +74,9 @@ public class CubeExplosion : MonoBehaviour
                     // Apply a subtle force away from the player
                     Rigidbody rb = fragment.AddComponent<Rigidbody>();
                     Vector3 forceDirection = (fragment.transform.position - playerMovement.transform.position).normalized;
-                    rb.AddForce(forceDirection * explosionForce * fragmentForceMultiplier, ForceMode.Impulse);
+                    float randomMultiplier = Random.Range(0.8f, 1.2f);
+                    rb.AddForce(forceDirection * explosionForce * fragmentForceMultiplier * randomMultiplier, ForceMode.Impulse);
+
 
                     // Randomize the destruction time for each fragment between minDestroyTime and maxDestroyTime
                     float randomDestroyTime = Random.Range(minDestroyTime, maxDestroyTime);
