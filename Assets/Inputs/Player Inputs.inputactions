@@ -40,11 +40,20 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Smash",
+                    "type": "Button",
+                    "id": "8ffc3023-6b73-4656-880c-ea3147a73296",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "3D Vector",
+                    "name": "Keyboard",
                     "id": "5357181a-48e2-417a-bc70-48b6340c53c3",
                     "path": "3DVector",
                     "interactions": "",
@@ -99,7 +108,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "3D Vector",
+                    "name": "Controller",
                     "id": "b9d3a207-3f77-48cb-b43f-3cb69f6d1c74",
                     "path": "3DVector",
                     "interactions": "",
@@ -189,7 +198,7 @@
                 {
                     "name": "",
                     "id": "ab17b801-768f-413e-8cef-2083a388f19e",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -216,6 +225,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a46d5a9-ff6c-4cbc-a7bf-e15c57d711b1",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Smash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f57c5182-aa9c-49fd-a1d5-c9570cb3ffde",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Smash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
