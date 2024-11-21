@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DashKey",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "50c262d0-ffbd-4238-8be8-3332b9066664",
                     "expectedControlType": "Button",
@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "SmashKey",
+                    "name": "Smash",
                     "type": "Button",
                     "id": "8ffc3023-6b73-4656-880c-ea3147a73296",
                     "expectedControlType": "Button",
@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Smash",
+                    "name": "SmashKey",
                     "type": "Button",
                     "id": "344bb7ed-cc64-4635-ac6b-81ecd569ac03",
                     "expectedControlType": "Button",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dash",
+                    "name": "DashKey",
                     "type": "Button",
                     "id": "1e416281-da83-45a5-93c6-dfa3c6bc4182",
                     "expectedControlType": "Button",
@@ -218,7 +218,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DashKey",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -229,7 +229,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DashKey",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -262,7 +262,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SmashKey",
+                    "action": "Smash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -273,7 +273,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SmashKey",
+                    "action": "Smash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -284,7 +284,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Smash",
+                    "action": "SmashKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -295,7 +295,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Smash",
+                    "action": "SmashKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -306,7 +306,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dash",
+                    "action": "DashKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -317,7 +317,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dash",
+                    "action": "DashKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -117,12 +117,12 @@ public class PlayerMovementCombined : MonoBehaviour
         if (currentLevel == Level3Unlock)
         {
             CheckInputAction("DoubleJump");
-            CheckInputAction("Dash");
+            CheckInputAction("DashKey");
         }
 
         if (currentLevel >= Level2Unlock)
         {
-            CheckInputAction("Smash");
+            CheckInputAction("SmashKey");
             CheckInputAction("DoubleJump");
         }
     }
