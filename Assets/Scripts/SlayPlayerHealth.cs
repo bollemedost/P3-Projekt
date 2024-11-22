@@ -1,22 +1,21 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SlayPlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
-    public Slider healthBar;
-    public GameObject gameOverScreen;
+    public int maxHealth = 100; // Maximum health
+    public int currentHealth;  // Current health
+    public Slider healthBar;   // UI slider for health
+    public GameObject gameOverScreen; // Game over screen
 
-    private Vector3 lastCheckpointPosition;
+    private Vector3 lastCheckpointPosition; // Player's last checkpoint position
 
     // Screen shake and flash settings
-    public float shakeDuration = 0.2f;
-    public float shakeMagnitude = 0.3f;
-    public Renderer playerRenderer;
-    private Color originalColor;
+    public float shakeDuration = 0.2f; // Duration of screen shake
+    public float shakeMagnitude = 0.3f; // Intensity of screen shake
+    public Renderer playerRenderer; // Renderer for the player
+    private Color originalColor; // Original color of the player
 
     void Start()
     {
@@ -25,7 +24,7 @@ public class SlayPlayerHealth : MonoBehaviour
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
 
-        // Hide Game Over screen
+        // Hide Game Over screen at the start
         gameOverScreen.SetActive(false);
 
         // Store the original color for flashing effect
@@ -41,7 +40,7 @@ public class SlayPlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health stays within bounds
         healthBar.value = currentHealth;
 
         // Trigger screen shake and flash effects
@@ -57,7 +56,7 @@ public class SlayPlayerHealth : MonoBehaviour
     public void Heal(int amount)
     {
         currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health stays within bounds
         healthBar.value = currentHealth;
     }
 
@@ -75,16 +74,35 @@ public class SlayPlayerHealth : MonoBehaviour
 
     public void SetCheckpoint(Vector3 checkpointPosition)
     {
-        lastCheckpointPosition = checkpointPosition;
+        lastCheckpointPosition = checkpointPosition; // Update checkpoint
         Debug.Log("Checkpoint updated to: " + checkpointPosition);
     }
 
     void RespawnAtCheckpoint()
     {
+        // Respawn player at the last checkpoint
         transform.position = lastCheckpointPosition;
-        currentHealth = maxHealth;
+        currentHealth = maxHealth; // Reset health
         healthBar.value = currentHealth;
         gameOverScreen.SetActive(false); // Hide Game Over screen
+
+        // Reset all falling platforms
+        SlayFallingPlatform[] platforms = FindObjectsOfType<SlayFallingPlatform>();
+        foreach (SlayFallingPlatform platform in platforms)
+        {
+            platform.ResetPlatform();
+        }
+
+        // Reset sleigh position if it exists
+        GameObject sleigh = GameObject.FindGameObjectWithTag("Sleigh");
+        if (sleigh != null)
+        {
+            Sleigh sleighScript = sleigh.GetComponent<Sleigh>();
+            if (sleighScript != null)
+            {
+                sleighScript.ResetPosition();
+            }
+        }
     }
 
     // Screen Shake Coroutine
@@ -101,10 +119,10 @@ public class SlayPlayerHealth : MonoBehaviour
             transform.position = originalPosition + new Vector3(offsetX, offsetY, 0);
 
             elapsed += Time.deltaTime;
-            yield return null;
+            yield return null; // Wait for the next frame
         }
 
-        transform.position = originalPosition;
+        transform.position = originalPosition; // Reset to original position
     }
 
     // Flash Red Coroutine

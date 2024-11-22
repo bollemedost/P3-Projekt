@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FallingPlatform : MonoBehaviour
+/*public class FallingPlatform : MonoBehaviour
 {
     public float fallDelay = 1f; // Time before the platform falls
     public float resetDelay = 3f; // Time before the platform resets
@@ -40,4 +40,4 @@ public class FallingPlatform : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z); // Adjust to reset position
         isTriggered = false; // Reset trigger state
     }
-}
+}*/

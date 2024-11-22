@@ -10,6 +10,7 @@ TagManager:
   - RotatePlatformRight
   - Collectable
   - 2D Player
+  - Sleigh
   layers:
   - Default
   - TransparentFX

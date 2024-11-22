@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 787849309263376614}
   - component: {fileID: -5936037939723082425}
   - component: {fileID: 7355222564460580440}
+  - component: {fileID: 1478140398212133514}
   m_Layer: 0
   m_Name: icicle
   m_TagString: Untagged
@@ -115,9 +116,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7727720081536564528}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 3
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -146,4 +147,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5978934cc3718489558451a17631b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmount: 25
+--- !u!114 &1478140398212133514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7727720081536564528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afae8873668963946b84bfdfad104610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakingEffectPrefab: {fileID: 0}

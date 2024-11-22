@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashAbilityCollectible : MonoBehaviour
+/*public class DashAbilityCollectible : MonoBehaviour
 {
     // Reference to the SlayPlayerMovement script
     private SlayPlayerMovement playerMovement;
@@ -23,4 +23,4 @@ public class DashAbilityCollectible : MonoBehaviour
             }
         }
     }
-}
+}*/
