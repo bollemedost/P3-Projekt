@@ -18,8 +18,8 @@ public class PlayerMovementCombined : MonoBehaviour
     private float lastDashTime = 0f;
 
     private bool isDoubleJumpActive = false;
-    private bool isDashActive = false;
-    private bool isSmashActive = false; // New field for Smash action
+    private bool isDashActive = true;
+    private bool isSmashActive = false;
 
     private Vector3 movement;
     private Vector3 lastMovementDirection; // Store last movement direction
@@ -103,6 +103,18 @@ public class PlayerMovementCombined : MonoBehaviour
         if (value.isPressed && isDashActive && Time.time >= lastDashTime + dashCooldown && !isDashing)
         {
             StartCoroutine(Dash());
+        }
+    }
+
+    private void OnSmash(InputValue value)
+    {
+        if (value.isPressed && isSmashActive)
+        {
+            // Find nearby cubes and trigger explosion
+            foreach (CubeExplosion cube in FindObjectsOfType<CubeExplosion>())
+            {
+                cube.TryExplode();
+            }
         }
     }
 
