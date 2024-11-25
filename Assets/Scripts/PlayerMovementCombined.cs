@@ -18,7 +18,7 @@ public class PlayerMovementCombined : MonoBehaviour
     private float lastDashTime = 0f;
 
     private bool isDoubleJumpActive = false;
-    private bool isDashActive = true;
+    private bool isDashActive = false;
     private bool isSmashActive = false;
 
     private Vector3 movement;
