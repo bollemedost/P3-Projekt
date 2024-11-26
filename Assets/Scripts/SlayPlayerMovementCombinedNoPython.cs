@@ -4,30 +4,41 @@ using UnityEngine.InputSystem;
 
 public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
 {
+    // Movement
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private float dashSpeed = 15f;
-    [SerializeField] private float dashDuration = 0.3f;
-    [SerializeField] private float dashCooldown = 1f;
     [SerializeField] private float rotationSpeed = 10f; // Speed for smooth rotation
-    private bool isDashing = false;
-    private float lastDashTime = 0f;
-    private bool isDoubleJumpActive = false;
-    private bool isDashActive = false;
     private Vector3 movement;
     private Vector3 lastMovementDirection;
     private Rigidbody rb;
     private bool isGrounded;
-    private bool jumpRequest;
-    private bool canDoubleJump;
-    private TrailRenderer trailRenderer;
-    private int currentLevel = 1;
-    [SerializeField] private CubeExplosion cubeExplosion;
-    private const int Level2Unlock = 2;
-    private const int Level3Unlock = 3;
     private const float GroundCheckDistance = 1.1f;
 
+    //Dash
+    [SerializeField] private float dashSpeed = 15f;
+    [SerializeField] private float dashDuration = 0.3f;
+    [SerializeField] private float dashCooldown = 1f;
+    private bool isDashing = false;
+    private float lastDashTime = 0f;
+    private bool isDashActive = false;
+    private TrailRenderer trailRenderer;
+
+    //Double Jump
+    private bool isDoubleJumpActive = false;
+    private bool jumpRequest;
+    private bool canDoubleJump;
+
+    //Smash
+    [SerializeField] private CubeExplosion cubeExplosion;
+    private bool isSmashActive = false; // Track if smash power-up is active
+
+    //Level
+    private int currentLevel = 1;
+    private const int Level2Unlock = 2;
+    private const int Level3Unlock = 3;
+    
+    //Animation
     private PlayerAnimationController animationHandler;
 
     private void Awake()
@@ -114,7 +125,12 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
 
         if (currentLevel >= Level3Unlock && Keyboard.current.lKey.wasPressedThisFrame)
         {
-            TriggerSmash();
+            ActivateSmash();
+        }
+
+        if (isSmashActive && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            PerformSmash();
         }
 
         // Update animations
@@ -124,7 +140,7 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
             jumpRequest && isGrounded,
             jumpRequest && !isGrounded && canDoubleJump,
             isDashing,
-            Keyboard.current.lKey.wasPressedThisFrame
+            isSmashActive && Keyboard.current.eKey.wasPressedThisFrame
         );
 
         RotatePlayer(); // Handle player rotation
@@ -150,15 +166,30 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         animationHandler.TriggerPowerUpAnimation();
     }
 
-    private void TriggerSmash()
+    private void ActivateSmash()
     {
-        if (cubeExplosion != null)
+        isSmashActive = true;
+        isDoubleJumpActive = false;
+        isDashActive = false;
+        UnityEngine.Debug.Log("Smash Activated");
+
+        // Trigger the power-up animation when Smash is activated
+        animationHandler.TriggerPowerUpAnimation();
+    }
+
+    private void PerformSmash()
+    {
+        UnityEngine.Debug.Log("Performing Smash!");
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 3f); // Adjust radius as needed
+
+        foreach (var hitCollider in hitColliders)
         {
-            cubeExplosion.Explode();
-        }
-        else
-        {
-            UnityEngine.Debug.LogError("CubeExplosion reference is missing!");
+            CubeExplosion cubeExplosion = hitCollider.GetComponent<CubeExplosion>();
+            if (cubeExplosion != null)
+            {
+                cubeExplosion.TryExplode();
+            }
         }
     }
 
