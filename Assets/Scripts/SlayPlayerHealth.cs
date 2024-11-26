@@ -6,7 +6,7 @@ public class SlayPlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100; // Maximum health
     public int currentHealth;  // Current health
-    public Slider healthBar;   // UI slider for health
+    public Image[] heartImages;   // Array of heart image UI elements
     public GameObject gameOverScreen; // Game over screen
 
     private Vector3 lastCheckpointPosition; // Player's last checkpoint position
@@ -21,8 +21,7 @@ public class SlayPlayerHealth : MonoBehaviour
     {
         // Initialize health
         currentHealth = maxHealth;
-        healthBar.maxValue = maxHealth;
-        healthBar.value = currentHealth;
+        UpdateHeartSprites(); // Update heart sprites at the start
 
         // Hide Game Over screen at the start
         gameOverScreen.SetActive(false);
@@ -41,7 +40,8 @@ public class SlayPlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health stays within bounds
-        healthBar.value = currentHealth;
+
+        UpdateHeartSprites(); // Update the heart sprites
 
         // Trigger screen shake and flash effects
         StartCoroutine(Shake(shakeDuration, shakeMagnitude));
@@ -57,13 +57,13 @@ public class SlayPlayerHealth : MonoBehaviour
     {
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health stays within bounds
-        healthBar.value = currentHealth;
+        UpdateHeartSprites(); // Update the heart sprites
     }
 
     void Die()
     {
         gameOverScreen.SetActive(true); // Show Game Over screen
-        StartCoroutine(ReloadSceneAfterDelay(1f)); // Reload scene after delay
+        StartCoroutine(ReloadSceneAfterDelay(0.8f)); // Reload scene after delay
     }
 
     private IEnumerator ReloadSceneAfterDelay(float delay)
@@ -83,7 +83,7 @@ public class SlayPlayerHealth : MonoBehaviour
         // Respawn player at the last checkpoint
         transform.position = lastCheckpointPosition;
         currentHealth = maxHealth; // Reset health
-        healthBar.value = currentHealth;
+        UpdateHeartSprites(); // Update the heart sprites
         gameOverScreen.SetActive(false); // Hide Game Over screen
 
         // Reset all falling platforms
@@ -101,6 +101,23 @@ public class SlayPlayerHealth : MonoBehaviour
             if (sleighScript != null)
             {
                 sleighScript.ResetPosition();
+            }
+        }
+    }
+
+    // Update Heart Sprites based on current health
+    private void UpdateHeartSprites()
+    {
+        int fullHearts = currentHealth / (maxHealth / heartImages.Length); // Determine how many hearts are full
+        for (int i = 0; i < heartImages.Length; i++)
+        {
+            if (i < fullHearts)
+            {
+                heartImages[i].enabled = true; // Show the heart (full)
+            }
+            else
+            {
+                heartImages[i].enabled = false; // Hide the heart (empty)
             }
         }
     }
