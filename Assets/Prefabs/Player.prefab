@@ -252,6 +252,7 @@ MonoBehaviour:
   dashSpeed: 15
   dashDuration: 0.3
   dashCooldown: 1
+  cubeExplosion: {fileID: 0}
 --- !u!114 &7550560926168053302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +267,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraOffset: {x: 0, y: 3, z: -10}
   rotationSpeed: 5
+  panClampMin: -45
+  panClampMax: 45
+  verticalClampMin: -30
+  verticalClampMax: 60
+  smoothingFactor: 0.1
 --- !u!96 &2841758169243042120
 TrailRenderer:
   serializedVersion: 3

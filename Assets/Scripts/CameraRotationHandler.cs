@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class CameraRotationHandler : MonoBehaviour
 {
     private Transform cameraTransform; // Reference to the camera transform
-    // private int rotationState = 0; // Track the rotation state of the player (0, 90, -90)
 
     [SerializeField] private Vector3 cameraOffset = new Vector3(0, -10, -10); // Offset of the camera relative to the player
     [SerializeField] private float rotationSpeed = 5f; // Speed of the camera rotation smoothing
@@ -15,12 +14,15 @@ public class CameraRotationHandler : MonoBehaviour
     [SerializeField] private float verticalClampMin = -30f; // Minimum X-axis rotation (up)
     [SerializeField] private float verticalClampMax = 60f; // Maximum X-axis rotation (down)
     [SerializeField] private float smoothingFactor = 0.1f; // Smoothing factor for input
+    [SerializeField] private float positionSmoothingFactor = 0.1f; // Smoothing for camera movement
 
     private Quaternion targetRotation; // Target rotation for the camera
     private float currentPan = 0f; // Current Y-axis pan value based on input
     private float targetPan = 0f; // Target Y-axis pan value for smoothing
     private float currentPitch = 0f; // Current X-axis (vertical) rotation value
     private float targetPitch = 0f; // Target X-axis (vertical) rotation value for smoothing
+
+    private Vector3 currentVelocity = Vector3.zero; // For SmoothDamp
 
     private void Start()
     {
@@ -70,9 +72,9 @@ public class CameraRotationHandler : MonoBehaviour
 
     private void UpdateCameraPosition()
     {
-        // Calculate the camera's position based on the offset and target rotation
+        // Smoothly move the camera to the new position using SmoothDamp
         Vector3 desiredPosition = transform.position + targetRotation * cameraOffset;
-        cameraTransform.position = Vector3.Lerp(cameraTransform.position, desiredPosition, Time.deltaTime * rotationSpeed);
+        cameraTransform.position = Vector3.SmoothDamp(cameraTransform.position, desiredPosition, ref currentVelocity, positionSmoothingFactor);
         cameraTransform.LookAt(transform.position); // Ensure the camera is always looking at the player
     }
 }

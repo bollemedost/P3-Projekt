@@ -4,36 +4,38 @@ using UnityEngine;
 
 public class SlayMovingPlatform : MonoBehaviour
 {
-    public Vector3 moveDirection = new Vector3(1, 0, 0); // Set direction of platform movement
-    public float speed = 2f; // Set the speed of movement
+    public Vector3 moveDirection = new Vector3(1, 0, 0); // Direction of platform movement
+    public float speed = 2f; // Speed of the platform
     private Vector3 startPosition;
+    private Vector3 lastPosition;
 
     private void Start()
     {
         startPosition = transform.position;
+        lastPosition = transform.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        // Move platform back and forth
-        transform.position = startPosition + moveDirection * Mathf.Sin(Time.time * speed);
+        // Calculate new platform position
+        Vector3 newPosition = startPosition + moveDirection * Mathf.Sin(Time.time * speed);
+        Vector3 platformVelocity = (newPosition - lastPosition) / Time.fixedDeltaTime;
+        transform.position = newPosition;
+
+        lastPosition = newPosition;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // Make player a child of platform to move along with it
-            collision.transform.SetParent(transform);
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Detach player from platform when they leave
-            collision.transform.SetParent(null);
+            Rigidbody playerRb = collision.gameObject.GetComponent<Rigidbody>();
+            if (playerRb != null)
+            {
+                // Apply the platform's movement to the player's position
+                Vector3 platformMovement = transform.position - lastPosition;
+                playerRb.MovePosition(playerRb.position + platformMovement);
+            }
         }
     }
 }

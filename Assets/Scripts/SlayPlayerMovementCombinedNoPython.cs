@@ -1,6 +1,5 @@
-using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
@@ -8,59 +7,54 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private LayerMask groundLayer;
-
     [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float dashDuration = 0.3f;
     [SerializeField] private float dashCooldown = 1f;
+    [SerializeField] private float rotationSpeed = 10f; // Speed for smooth rotation
     private bool isDashing = false;
     private float lastDashTime = 0f;
-
     private bool isDoubleJumpActive = false;
     private bool isDashActive = false;
-
     private Vector3 movement;
-    private Vector3 lastMovementDirection; // Store last movement direction
+    private Vector3 lastMovementDirection;
     private Rigidbody rb;
     private bool isGrounded;
     private bool jumpRequest;
     private bool canDoubleJump;
     private TrailRenderer trailRenderer;
-
-    private int currentLevel = 1; // Default level
-
-    [SerializeField] private CubeExplosion cubeExplosion; // Reference to the CubeExplosion script
-
-    // Constants for level restrictions
-    private const int Level2Unlock = 2; // Level where Dash unlocks
-    private const int Level3Unlock = 3; // Level where Smash unlocks
-
-    // Constants for grounded raycast
+    private int currentLevel = 1;
+    [SerializeField] private CubeExplosion cubeExplosion;
+    private const int Level2Unlock = 2;
+    private const int Level3Unlock = 3;
     private const float GroundCheckDistance = 1.1f;
+
+    private PlayerAnimationController animationHandler;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         trailRenderer = GetComponent<TrailRenderer>();
-        trailRenderer.emitting = false;  // Start without emitting the trail
+        trailRenderer.emitting = false;
+        animationHandler = GetComponent<PlayerAnimationController>();
 
-        SetLevelBasedOnScene(); // Automatically set level based on active scene
+        SetLevelBasedOnScene();
     }
 
     private void SetLevelBasedOnScene()
     {
-        string activeSceneName = SceneManager.GetActiveScene().name;
+        string activeSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
         if (activeSceneName == "scene brat slay brat slay purr")
         {
-            currentLevel = Level2Unlock; // Set level 2
+            currentLevel = Level2Unlock;
         }
         else if (activeSceneName == "Level 3 - Emil" || activeSceneName == "Level 4 - Aioli")
         {
-            currentLevel = Level3Unlock; // Set level 3 for Level 3 and Level 4
+            currentLevel = Level3Unlock;
         }
         else
         {
-            currentLevel = 1; // Default to level 1
+            currentLevel = 1;
         }
 
         UnityEngine.Debug.Log($"Active Scene: {activeSceneName}, Current Level: {currentLevel}");
@@ -70,7 +64,6 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     {
         movement = value.Get<Vector3>();
 
-        // Update last movement direction if there is input
         if (movement != Vector3.zero)
         {
             lastMovementDirection = movement.normalized;
@@ -89,6 +82,9 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
             {
                 jumpRequest = true;
                 canDoubleJump = false;
+
+                // Trigger double jump animation
+                animationHandler.TriggerDoubleJump();
             }
         }
     }
@@ -103,24 +99,35 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
 
     private void Update()
     {
-        // Check level restrictions and trigger actions based on input
+        // Trigger power-up animation when keys J or K are pressed
         if (currentLevel >= 1 && Keyboard.current.jKey.wasPressedThisFrame)
         {
-            UnityEngine.Debug.Log("J Key Pressed");
             ActivateDoubleJump();
+            animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
         }
 
         if (currentLevel >= Level2Unlock && Keyboard.current.kKey.wasPressedThisFrame)
         {
-            UnityEngine.Debug.Log("K Key Pressed");
             ActivateDash();
+            animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
         }
 
         if (currentLevel >= Level3Unlock && Keyboard.current.lKey.wasPressedThisFrame)
         {
-            UnityEngine.Debug.Log("L Key Pressed");
             TriggerSmash();
         }
+
+        // Update animations
+        animationHandler.UpdateAnimationStates(
+            movement,
+            isGrounded,
+            jumpRequest && isGrounded,
+            jumpRequest && !isGrounded && canDoubleJump,
+            isDashing,
+            Keyboard.current.lKey.wasPressedThisFrame
+        );
+
+        RotatePlayer(); // Handle player rotation
     }
 
     private void ActivateDoubleJump()
@@ -128,6 +135,9 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         isDoubleJumpActive = true;
         isDashActive = false;
         UnityEngine.Debug.Log("Double Jump Activated");
+
+        // Trigger the power-up animation when Double Jump is activated
+        animationHandler.TriggerPowerUpAnimation();
     }
 
     private void ActivateDash()
@@ -135,6 +145,9 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         isDashActive = true;
         isDoubleJumpActive = false;
         UnityEngine.Debug.Log("Dash Activated");
+
+        // Trigger the power-up animation when Dash is activated
+        animationHandler.TriggerPowerUpAnimation();
     }
 
     private void TriggerSmash()
@@ -183,36 +196,44 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         }
     }
 
-    public IEnumerator Dash()
-    {
-        isDashing = true;
-        lastDashTime = Time.time;
+    private IEnumerator Dash()
+{
+    isDashing = true;
+    lastDashTime = Time.time;
 
-        trailRenderer.emitting = true;  // Start emitting the trail
+    // Trigger dash animation once
+    animationHandler.TriggerDashAnimation();
 
-        Vector3 dashDirection;
+    trailRenderer.emitting = true;
 
-        // Use the last movement direction as the dash direction
-        if (lastMovementDirection != Vector3.zero)
-        {
-            dashDirection = (transform.right * lastMovementDirection.x + transform.forward * lastMovementDirection.z).normalized;
-        }
-        else
-        {
-            dashDirection = transform.forward; // Default to forward if no last input
-        }
+    // Use the player's facing direction for the dash
+    Vector3 dashDirection = transform.forward;
 
-        rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);  // Apply the dash force
+    // Apply the dash force
+    rb.velocity = Vector3.zero; // Reset velocity to ensure consistent dash speed
+    rb.AddForce(dashDirection * dashSpeed, ForceMode.VelocityChange);
 
-        yield return new WaitForSeconds(dashDuration);  // Wait for the dash duration
+    yield return new WaitForSeconds(dashDuration);
 
-        trailRenderer.emitting = false;  // Stop emitting the trail after the dash
-
-        isDashing = false;
-    }
-
+    trailRenderer.emitting = false;
+    isDashing = false;
+}
     private bool CheckGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, GroundCheckDistance, groundLayer);
+    }
+
+    private void RotatePlayer()
+    {
+        if (movement != Vector3.zero)
+        {
+            // Calculate the desired rotation based on movement direction
+            Vector3 movementDirection = Camera.main.transform.TransformDirection(movement);
+            movementDirection.y = 0; // Ensure no vertical rotation
+            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+
+            // Smoothly rotate towards the target rotation
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 }
