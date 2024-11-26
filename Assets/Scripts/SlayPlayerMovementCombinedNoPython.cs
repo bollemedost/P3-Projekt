@@ -110,25 +110,30 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
 
     private void Update()
     {
-        // Trigger power-up animation when keys J or K are pressed
-        if (currentLevel >= 1 && Keyboard.current.jKey.wasPressedThisFrame)
+        var playerInput = GetComponent<PlayerInput>(); // Ensure PlayerInput component is referenced
+
+        // Retrieve the input actions from the PlayerInput
+        var inputActions = playerInput.actions;
+
+        // Trigger power-up animation when the respective actions are performed
+        if (currentLevel >= 1 && inputActions["DoubleJump"].WasPressedThisFrame())
         {
             ActivateDoubleJump();
             animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
         }
 
-        if (currentLevel >= Level2Unlock && Keyboard.current.kKey.wasPressedThisFrame)
+        if (currentLevel >= Level2Unlock && inputActions["DashKey"].WasPressedThisFrame())
         {
             ActivateDash();
             animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
         }
 
-        if (currentLevel >= Level3Unlock && Keyboard.current.lKey.wasPressedThisFrame)
+        if (currentLevel >= Level3Unlock && inputActions["SmashKey"].WasPressedThisFrame())
         {
             ActivateSmash();
         }
 
-        if (isSmashActive && Keyboard.current.eKey.wasPressedThisFrame)
+        if (isSmashActive && inputActions["Smash"].WasPressedThisFrame())
         {
             PerformSmash();
         }
@@ -140,11 +145,12 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
             jumpRequest && isGrounded,
             jumpRequest && !isGrounded && canDoubleJump,
             isDashing,
-            isSmashActive && Keyboard.current.eKey.wasPressedThisFrame
+            isSmashActive && inputActions["Smash"].WasPressedThisFrame()
         );
 
         RotatePlayer(); // Handle player rotation
     }
+
 
     private void ActivateDoubleJump()
     {
