@@ -12,14 +12,13 @@ public class SlayMovingPlatform : MonoBehaviour
     private void Start()
     {
         startPosition = transform.position;
-        lastPosition = transform.position;
+        lastPosition = startPosition;
     }
 
     private void FixedUpdate()
     {
-        // Calculate new platform position
+        // Calculate the new position of the platform
         Vector3 newPosition = startPosition + moveDirection * Mathf.Sin(Time.time * speed);
-        Vector3 platformVelocity = (newPosition - lastPosition) / Time.fixedDeltaTime;
         transform.position = newPosition;
 
         lastPosition = newPosition;
@@ -32,7 +31,7 @@ public class SlayMovingPlatform : MonoBehaviour
             Rigidbody playerRb = collision.gameObject.GetComponent<Rigidbody>();
             if (playerRb != null)
             {
-                // Apply the platform's movement to the player's position
+                // Move the player based on the platform's movement
                 Vector3 platformMovement = transform.position - lastPosition;
                 playerRb.MovePosition(playerRb.position + platformMovement);
             }
