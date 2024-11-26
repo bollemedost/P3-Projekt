@@ -11,35 +11,45 @@ public class PlayerMovementCombined : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private LayerMask groundLayer;
 
+    private Vector3 movement;
+    private Vector3 lastMovementDirection; // Store last movement direction
+    private Rigidbody rb;
+    private bool isGrounded;
+    private PlayerInput playerInput;
+
+    // Constants for grounded raycast
+    private const float GroundCheckDistance = 1.1f;
+
+    //Dash
     [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float dashDuration = 0.3f;
     [SerializeField] private float dashCooldown = 1f;
     private bool isDashing = false;
     private float lastDashTime = 0f;
-
-    private bool isDoubleJumpActive = false;
     private bool isDashActive = false;
-    private bool isSmashActive = false;
-
-    private Vector3 movement;
-    private Vector3 lastMovementDirection; // Store last movement direction
-    private Rigidbody rb;
-    private bool isGrounded;
-    private bool jumpRequest;
-    private bool canDoubleJump;
     private TrailRenderer trailRenderer;
 
-    private int currentLevel = 1; // Default level
-    private PlayerInput playerInput;
-
+    //Double Jump
+    private bool isDoubleJumpActive = false;
+    private bool jumpRequest;
+    private bool canDoubleJump;
+    
+    //Smash
+    private bool isSmashActive = false;
     [SerializeField] private CubeExplosion cubeExplosion; // Reference to the CubeExplosion script
 
+   
+    //Level
+    private int currentLevel = 1; // Default level
+    
     // Constants for level restrictions
     private const int Level2Unlock = 2; // Level where Smash unlocks (Level 3 - Emil)
     private const int Level3Unlock = 3; // Level where all actions unlock (scene brat slay brat slay purr and Level 4 - Aioli)
 
-    // Constants for grounded raycast
-    private const float GroundCheckDistance = 1.1f;
+    //Animation
+    private PlayerAnimationController animationHandler;
+    [SerializeField] private float rotationSpeed = 10f; // Speed for smooth rotation
+
 
     private void Awake()
     {
@@ -47,6 +57,7 @@ public class PlayerMovementCombined : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.emitting = false;
         playerInput = GetComponent<PlayerInput>();
+        animationHandler = GetComponent<PlayerAnimationController>();
 
         SetLevelBasedOnScene(); // Automatically set level based on active scene
     }
@@ -94,6 +105,9 @@ public class PlayerMovementCombined : MonoBehaviour
             {
                 jumpRequest = true;
                 canDoubleJump = false;
+
+                // Trigger double jump animation
+                animationHandler.TriggerDoubleJump();
             }
         }
     }
@@ -137,6 +151,18 @@ public class PlayerMovementCombined : MonoBehaviour
             CheckInputAction("SmashKey");
             CheckInputAction("DoubleJump");
         }
+
+        // Update animations
+        animationHandler.UpdateAnimationStates(
+            movement,
+            isGrounded,
+            jumpRequest && isGrounded,
+            jumpRequest && !isGrounded && canDoubleJump,
+            isDashing,
+            isSmashActive && playerInput.actions["Smash"].WasPressedThisFrame()
+        );
+
+        RotatePlayer(); // Handle player rotation
     }
 
     private void CheckInputAction(string actionName)
@@ -161,10 +187,12 @@ public class PlayerMovementCombined : MonoBehaviour
             if (action == "DoubleJump")
             {
                 ActivateDoubleJump();
+                animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
             }
             else if (action == "Dash")
             {
                 ActivateDash();
+                animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
             }
             else if (action == "Smash")
             {
@@ -224,6 +252,9 @@ public class PlayerMovementCombined : MonoBehaviour
         isDashActive = false;
         isSmashActive = false;
         UnityEngine.Debug.Log("Double Jump Activated");
+
+        // Trigger the power-up animation when Double Jump is activated
+        animationHandler.TriggerPowerUpAnimation();
     }
 
     private void ActivateDash()
@@ -232,6 +263,9 @@ public class PlayerMovementCombined : MonoBehaviour
         isDoubleJumpActive = false;
         isSmashActive = false;
         UnityEngine.Debug.Log("Dash Activated");
+
+        // Trigger the power-up animation when Dash is activated
+        animationHandler.TriggerPowerUpAnimation();
     }
 
     private void ActivateSmash()
@@ -240,6 +274,9 @@ public class PlayerMovementCombined : MonoBehaviour
         isDoubleJumpActive = false;
         isDashActive = false;
         UnityEngine.Debug.Log("Smash Activated");
+
+        // Trigger the power-up animation when Smash is activated
+        animationHandler.TriggerPowerUpAnimation();
     }
 
     public bool IsSmashActive()
@@ -312,5 +349,19 @@ public class PlayerMovementCombined : MonoBehaviour
     private bool CheckGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, GroundCheckDistance, groundLayer);
+    }
+
+    private void RotatePlayer()
+    {
+        if (movement != Vector3.zero)
+        {
+            // Calculate the desired rotation based on movement direction
+            Vector3 movementDirection = Camera.main.transform.TransformDirection(movement);
+            movementDirection.y = 0; // Ensure no vertical rotation
+            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+
+            // Smoothly rotate towards the target rotation
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 }
