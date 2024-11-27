@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovementCombined : MonoBehaviour
 {
+    //Movement
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private LayerMask groundLayer;
@@ -49,6 +50,11 @@ public class PlayerMovementCombined : MonoBehaviour
     //Animation
     private PlayerAnimationController animationHandler;
     [SerializeField] private float rotationSpeed = 10f; // Speed for smooth rotation
+
+    // Handrecognition
+    private bool isHandSignDetectionActive = false; // Flag to track detection state
+    private float inputCooldown = 0.5f; // Cooldown in seconds
+    private float lastInputTime = -Mathf.Infinity;
 
 
     private void Awake()
@@ -164,20 +170,33 @@ public class PlayerMovementCombined : MonoBehaviour
 
         RotatePlayer(); // Handle player rotation
     }
-
+    
     private void CheckInputAction(string actionName)
     {
-        // Check if the input action is triggered (pressed) based on the player's input device (keyboard, controller, etc.)
-        if (playerInput.actions[actionName].triggered)
+        // Avoid redundant triggering during cooldown
+        if (Time.time < lastInputTime + inputCooldown)
+            return;
+
+        if (playerInput.actions[actionName].triggered && !isHandSignDetectionActive)
         {
+            lastInputTime = Time.time;
             UnityEngine.Debug.Log($"{actionName} action triggered");
             StartCoroutine(HandleHandSign());
         }
     }
-    
+
     private IEnumerator HandleHandSign()
     {
+        //UnityEngine.Debug.Log($"Starting HandleHandSign at time: {Time.time}"); // Debug log for testing
+        if (isHandSignDetectionActive)
+        {
+            UnityEngine.Debug.Log("HandleHandSign skipped due to active detection.");
+            yield break; // Prevent multiple activations
+        }
+
+        isHandSignDetectionActive = true; // Set flag to active
         UnityEngine.Debug.Log("HandleHandSign called");
+
         string detectedAction = LaunchPythonAndGetAction();
 
         UnityEngine.Debug.Log($"Action Detected: {detectedAction}");
@@ -185,23 +204,23 @@ public class PlayerMovementCombined : MonoBehaviour
         {
             case "DoubleJump":
                 ActivateDoubleJump();
-                animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
                 break;
             case "Dash":
                 ActivateDash();
-                animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
                 break;
             case "Smash":
                 ActivateSmash();
-                animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
                 break;
             default:
                 UnityEngine.Debug.Log($"No matching action detected. Received: {detectedAction}");
                 break;
         }
+        //UnityEngine.Debug.Log($"Starting HandleHandSign at time: {Time.time}"); // Debug log for testing
 
+        isHandSignDetectionActive = false; // Reset flag after completion
         yield return null;
     }
+
 
 
     private string LaunchPythonAndGetAction()
