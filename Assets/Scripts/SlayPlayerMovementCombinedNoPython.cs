@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI; // For UI Text
 
 public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
 {
@@ -41,6 +42,11 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     //Animation
     private PlayerAnimationController animationHandler;
 
+    // UI Elements for Power-Up Texts
+    [SerializeField] private Text doubleJumpText;
+    [SerializeField] private Text dashText;
+    [SerializeField] private Text smashText;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,6 +55,11 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         animationHandler = GetComponent<PlayerAnimationController>();
 
         SetLevelBasedOnScene();
+
+        // Make sure the UI texts are hidden at the start
+        doubleJumpText.gameObject.SetActive(false);
+        dashText.gameObject.SetActive(false);
+        smashText.gameObject.SetActive(false);
     }
 
     private void SetLevelBasedOnScene()
@@ -151,15 +162,14 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         RotatePlayer(); // Handle player rotation
     }
 
-
     private void ActivateDoubleJump()
     {
         isDoubleJumpActive = true;
         isDashActive = false;
         UnityEngine.Debug.Log("Double Jump Activated");
 
-        // Trigger the power-up animation when Double Jump is activated
-        animationHandler.TriggerPowerUpAnimation();
+        // Show Double Jump text
+        ShowPowerUpText(doubleJumpText);
     }
 
     private void ActivateDash()
@@ -168,8 +178,8 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         isDoubleJumpActive = false;
         UnityEngine.Debug.Log("Dash Activated");
 
-        // Trigger the power-up animation when Dash is activated
-        animationHandler.TriggerPowerUpAnimation();
+        // Show Dash text
+        ShowPowerUpText(dashText);
     }
 
     private void ActivateSmash()
@@ -179,8 +189,8 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         isDashActive = false;
         UnityEngine.Debug.Log("Smash Activated");
 
-        // Trigger the power-up animation when Smash is activated
-        animationHandler.TriggerPowerUpAnimation();
+        // Show Smash text
+        ShowPowerUpText(smashText);
     }
 
     private void PerformSmash()
@@ -255,7 +265,7 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         trailRenderer.emitting = false;
         isDashing = false;
     }
-    
+
     private bool CheckGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, GroundCheckDistance, groundLayer);
@@ -273,5 +283,18 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
             // Smoothly rotate towards the target rotation
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    // Method to show power-up text
+    private void ShowPowerUpText(Text powerUpText)
+    {
+        powerUpText.gameObject.SetActive(true);
+        StartCoroutine(HidePowerUpTextAfterDelay(powerUpText));
+    }
+
+    private IEnumerator HidePowerUpTextAfterDelay(Text powerUpText)
+    {
+        yield return new WaitForSeconds(1f);
+        powerUpText.gameObject.SetActive(false);
     }
 }
