@@ -316,29 +316,24 @@ public class PlayerMovementCombined : MonoBehaviour
 
     public IEnumerator Dash()
     {
-        isDashing = true;
+         isDashing = true;
         lastDashTime = Time.time;
+
+        // Trigger dash animation once
+        animationHandler.TriggerDashAnimation();
 
         trailRenderer.emitting = true;
 
-        Vector3 dashDirection;
+        // Use the player's facing direction for the dash
+        Vector3 dashDirection = transform.forward;
 
-        // Use the last movement direction as the dash direction
-        if (lastMovementDirection != Vector3.zero)
-        {
-            dashDirection = (transform.right * lastMovementDirection.x + transform.forward * lastMovementDirection.z).normalized;
-        }
-        else
-        {
-            dashDirection = transform.forward; // Default to forward if no last input
-        }
-
-        rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
+        // Apply the dash force
+        rb.velocity = Vector3.zero; // Reset velocity to ensure consistent dash speed
+        rb.AddForce(dashDirection * dashSpeed, ForceMode.VelocityChange);
 
         yield return new WaitForSeconds(dashDuration);
 
         trailRenderer.emitting = false;
-
         isDashing = false;
     }
 
