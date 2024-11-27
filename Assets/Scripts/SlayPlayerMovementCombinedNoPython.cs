@@ -8,13 +8,12 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float rotationSpeed = 10f; // Speed for smooth rotation
     private Vector3 movement;
     private Vector3 lastMovementDirection;
     private Rigidbody rb;
     private bool isGrounded;
     private const float GroundCheckDistance = 1.1f;
-
-    [SerializeField] private float rotationSpeed = 10f; // Speed for smooth rotation
 
     //Dash
     [SerializeField] private float dashSpeed = 15f;
@@ -110,47 +109,47 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     }
 
     private void Update()
-{
-    var playerInput = GetComponent<PlayerInput>(); // Ensure PlayerInput component is referenced
-
-    // Retrieve the input actions from the PlayerInput
-    var inputActions = playerInput.actions;
-
-    // Trigger power-up animation when the respective actions are performed
-    if (currentLevel >= 1 && inputActions["DoubleJump"].WasPressedThisFrame())
     {
-        ActivateDoubleJump();
-        animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
+        var playerInput = GetComponent<PlayerInput>(); // Ensure PlayerInput component is referenced
+
+        // Retrieve the input actions from the PlayerInput
+        var inputActions = playerInput.actions;
+
+        // Trigger power-up animation when the respective actions are performed
+        if (currentLevel >= 1 && inputActions["DoubleJump"].WasPressedThisFrame())
+        {
+            ActivateDoubleJump();
+            animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
+        }
+
+        if (currentLevel >= Level2Unlock && inputActions["DashKey"].WasPressedThisFrame())
+        {
+            ActivateDash();
+            animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
+        }
+
+        if (currentLevel >= Level3Unlock && inputActions["SmashKey"].WasPressedThisFrame())
+        {
+            ActivateSmash();
+        }
+
+        if (isSmashActive && inputActions["Smash"].WasPressedThisFrame())
+        {
+            PerformSmash();
+        }
+
+        // Update animations
+        animationHandler.UpdateAnimationStates(
+            movement,
+            isGrounded,
+            jumpRequest && isGrounded,
+            jumpRequest && !isGrounded && canDoubleJump,
+            isDashing,
+            isSmashActive && inputActions["Smash"].WasPressedThisFrame()
+        );
+
+        RotatePlayer(); // Handle player rotation
     }
-
-    if (currentLevel >= Level2Unlock && inputActions["Dash"].WasPressedThisFrame())
-    {
-        ActivateDash();
-        animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
-    }
-
-    if (currentLevel >= Level3Unlock && inputActions["Smash"].WasPressedThisFrame())
-    {
-        ActivateSmash();
-    }
-
-    if (isSmashActive && inputActions["Smash"].WasPressedThisFrame())
-    {
-        PerformSmash();
-    }
-
-    // Update animations
-    animationHandler.UpdateAnimationStates(
-        movement,
-        isGrounded,
-        jumpRequest && isGrounded,
-        jumpRequest && !isGrounded && canDoubleJump,
-        isDashing,
-        isSmashActive && inputActions["Smash"].WasPressedThisFrame()
-    );
-
-    RotatePlayer(); // Handle player rotation
-}
 
 
     private void ActivateDoubleJump()
@@ -235,27 +234,28 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     }
 
     private IEnumerator Dash()
-{
-    isDashing = true;
-    lastDashTime = Time.time;
+    {
+        isDashing = true;
+        lastDashTime = Time.time;
 
-    // Trigger dash animation once
-    animationHandler.TriggerDashAnimation();
+        // Trigger dash animation once
+        animationHandler.TriggerDashAnimation();
 
-    trailRenderer.emitting = true;
+        trailRenderer.emitting = true;
 
-    // Use the player's facing direction for the dash
-    Vector3 dashDirection = transform.forward;
+        // Use the player's facing direction for the dash
+        Vector3 dashDirection = transform.forward;
 
-    // Apply the dash force
-    rb.velocity = Vector3.zero; // Reset velocity to ensure consistent dash speed
-    rb.AddForce(dashDirection * dashSpeed, ForceMode.VelocityChange);
+        // Apply the dash force
+        rb.velocity = Vector3.zero; // Reset velocity to ensure consistent dash speed
+        rb.AddForce(dashDirection * dashSpeed, ForceMode.VelocityChange);
 
-    yield return new WaitForSeconds(dashDuration);
+        yield return new WaitForSeconds(dashDuration);
 
-    trailRenderer.emitting = false;
-    isDashing = false;
-}
+        trailRenderer.emitting = false;
+        isDashing = false;
+    }
+    
     private bool CheckGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, GroundCheckDistance, groundLayer);

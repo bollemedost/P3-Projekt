@@ -44,25 +44,25 @@ public class PlayerAnimationController : MonoBehaviour
         {
             animator.SetTrigger(Jump);
             hasJumped = true;  // Mark that jump animation was triggered
-            Debug.Log("Jump triggered");
+            //Debug.Log("Jump triggered");
         }
 
         if (isDoubleJumping) // Trigger double jump
         {
             animator.SetTrigger(DoubleJump);
-            Debug.Log("Double Jump triggered");
+            //Debug.Log("Double Jump triggered");
         }
 
         if (isDashing) // Trigger dash
         {
             animator.SetTrigger(Dash);
-            Debug.Log("Dash triggered");
+            //Debug.Log("Dash triggered");
         }
 
         if (isSmashing) // Trigger smash
         {
             animator.SetTrigger(Smash);
-            Debug.Log("Smash triggered");
+            //Debug.Log("Smash triggered");
         }
 
         // Reset the jump flag when the player lands
@@ -78,13 +78,13 @@ public class PlayerAnimationController : MonoBehaviour
     public void TriggerDoubleJump()
     {
         animator.SetTrigger(DoubleJump);
-        Debug.Log("TriggerDoubleJump: Double Jump triggered");
+        //Debug.Log("TriggerDoubleJump: Double Jump triggered");
     }
 
     public void TriggerPowerUpAnimation()
     {
         animator.SetTrigger("PowerUpActivated");  // Trigger the power-up activation animation
-        Debug.Log("Power-up activation animation triggered");
+        //Debug.Log("Power-up activation animation triggered");
     }
 
     public void TriggerDashAnimation()
