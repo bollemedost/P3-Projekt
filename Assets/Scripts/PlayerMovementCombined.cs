@@ -171,46 +171,42 @@ public class PlayerMovementCombined : MonoBehaviour
         if (playerInput.actions[actionName].triggered)
         {
             UnityEngine.Debug.Log($"{actionName} action triggered");
-            StartCoroutine(HandleHandSign(actionName));
+            StartCoroutine(HandleHandSign());
         }
     }
     
-
-    private IEnumerator HandleHandSign(string action)
+    private IEnumerator HandleHandSign()
     {
-        UnityEngine.Debug.Log($"HandleHandSign called for action: {action}");
+        UnityEngine.Debug.Log("HandleHandSign called");
         string detectedAction = LaunchPythonAndGetAction();
 
-        if (detectedAction == action)
+        UnityEngine.Debug.Log($"Action Detected: {detectedAction}");
+        switch (detectedAction)
         {
-            UnityEngine.Debug.Log($"Action Detected: {detectedAction}");
-            if (action == "DoubleJump")
-            {
+            case "DoubleJump":
                 ActivateDoubleJump();
                 animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
-            }
-            else if (action == "Dash")
-            {
+                break;
+            case "Dash":
                 ActivateDash();
                 animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
-            }
-            else if (action == "Smash")
-            {
-                UnityEngine.Debug.Log("Smash Activated");
-                ActivateSmash(); // Activate Smash
-            }
-        }
-        else
-        {
-            UnityEngine.Debug.Log($"No matching action detected. Received: {detectedAction}");
+                break;
+            case "Smash":
+                ActivateSmash();
+                animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
+                break;
+            default:
+                UnityEngine.Debug.Log($"No matching action detected. Received: {detectedAction}");
+                break;
         }
 
         yield return null;
     }
 
+
     private string LaunchPythonAndGetAction()
     {
-        string pythonPath = "python"; // Ensure Python is in your system's PATH
+        string pythonPath = "/opt/anaconda3/bin/python3"; // Ensure Python is in your system's PATH
         string projectPath = Application.dataPath; // Path to the Assets folder
         string scriptPath = Path.Combine(projectPath, "PythonScript", "Hand_detection.py"); // Dynamically locate the Python script
 
