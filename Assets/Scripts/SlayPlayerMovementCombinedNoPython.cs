@@ -24,6 +24,7 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     private float lastDashTime = 0f;
     private bool isDashActive = false;
     private TrailRenderer trailRenderer;
+    private bool canDash = true;
 
     //Double Jump
     private bool isDoubleJumpActive = false;
@@ -46,8 +47,6 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     [SerializeField] private Text doubleJumpText;
     [SerializeField] private Text dashText;
     [SerializeField] private Text smashText;
-
-    private bool canDash = true;
 
     private void Awake()
     {
