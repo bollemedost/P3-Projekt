@@ -47,6 +47,8 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     [SerializeField] private Text dashText;
     [SerializeField] private Text smashText;
 
+    private bool canDash = true;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -113,7 +115,7 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
 
     private void OnDash(InputValue value)
     {
-        if (value.isPressed && isDashActive && Time.time >= lastDashTime + dashCooldown && !isDashing)
+        if (value.isPressed && isDashActive && Time.time >= lastDashTime + dashCooldown && !isDashing && canDash)
         {
             StartCoroutine(Dash());
         }
@@ -239,13 +241,14 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
             if (isGrounded)
             {
                 canDoubleJump = true;
+                canDash = true; // Reset dash availability when grounded
             }
         }
     }
-
     private IEnumerator Dash()
     {
         isDashing = true;
+        canDash = false; // Prevent dashing again until grounded
         lastDashTime = Time.time;
 
         // Trigger dash animation once
