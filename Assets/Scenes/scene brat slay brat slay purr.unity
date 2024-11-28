@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.659
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.51148015, g: 0.5664237, b: 0.65394926, a: 0.659}
+  m_IndirectSpecularColor: {r: 0.51148945, g: 0.566429, b: 0.6539517, a: 0.659}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1655,6 +1655,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flag (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f24ad78d5a1e3e743904edfb1bc13cc4, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3002,7 +3006,7 @@ GameObject:
   - component: {fileID: 77976042}
   m_Layer: 0
   m_Name: Barriers (5)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6669,7 +6673,7 @@ GameObject:
   - component: {fileID: 174324922}
   m_Layer: 0
   m_Name: ice cube 2 (3)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17620,7 +17624,7 @@ GameObject:
   - component: {fileID: 445933184}
   m_Layer: 0
   m_Name: Barriers (6)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19875,7 +19879,7 @@ GameObject:
   - component: {fileID: 570480395}
   m_Layer: 6
   m_Name: ice cube 2 (5)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36316,7 +36320,7 @@ GameObject:
   - component: {fileID: 1013386677}
   m_Layer: 0
   m_Name: ice cube 2 (7)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36479,7 +36483,7 @@ GameObject:
   - component: {fileID: 1018799919}
   m_Layer: 0
   m_Name: ice cube 2 (2)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37936,6 +37940,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flag (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f24ad78d5a1e3e743904edfb1bc13cc4, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38041,7 +38049,7 @@ GameObject:
   - component: {fileID: 1104419379}
   m_Layer: 0
   m_Name: Barriers (3)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38402,7 +38410,7 @@ GameObject:
   - component: {fileID: 1142773393}
   m_Layer: 0
   m_Name: Barriers (2)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39274,7 +39282,7 @@ GameObject:
   - component: {fileID: 1195248485}
   m_Layer: 0
   m_Name: Barriers (1)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41897,6 +41905,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flag (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f24ad78d5a1e3e743904edfb1bc13cc4, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -43791,7 +43803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c61df152e0c4494089c6de579cf869a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelIndex: 3
+  levelIndex: 4
 --- !u!65 &1301521036
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44193,6 +44205,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f24ad78d5a1e3e743904edfb1bc13cc4, type: 3}
       propertyPath: m_Name
       value: Flag (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f24ad78d5a1e3e743904edfb1bc13cc4, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64010,7 +64026,7 @@ GameObject:
   - component: {fileID: 1538678294}
   m_Layer: 0
   m_Name: ice cube 2 (1)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64351,7 +64367,7 @@ GameObject:
   - component: {fileID: 1548320273}
   m_Layer: 6
   m_Name: ice cube 2 (6)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69961,7 +69977,7 @@ GameObject:
   - component: {fileID: 1814816860}
   m_Layer: 0
   m_Name: ice cube 2 (9)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74598,7 +74614,7 @@ GameObject:
   - component: {fileID: 1886191583}
   m_Layer: 0
   m_Name: ice cube 2 (4)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75381,7 +75397,7 @@ GameObject:
   - component: {fileID: 1934561373}
   m_Layer: 0
   m_Name: Barriers
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77008,7 +77024,7 @@ GameObject:
   - component: {fileID: 2038598220}
   m_Layer: 0
   m_Name: Barriers (4)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79129,6 +79145,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flag
       objectReference: {fileID: 0}
+    - target: {fileID: 5148737318093072317, guid: 9369f7499bacdf84bb3490eb02a09943, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 5492190200103468295, guid: 9369f7499bacdf84bb3490eb02a09943, type: 3}
       propertyPath: m_LocalPosition.x
       value: -253.4921
@@ -79524,6 +79544,10 @@ PrefabInstance:
     - target: {fileID: 1578167161129400542, guid: 7532e916e6943f941a96f277b6f78ffc, type: 3}
       propertyPath: m_Name
       value: ice cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578167161129400542, guid: 7532e916e6943f941a96f277b6f78ffc, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     - target: {fileID: 6567799222629575270, guid: 7532e916e6943f941a96f277b6f78ffc, type: 3}
       propertyPath: m_LocalScale.y
@@ -80538,7 +80562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6225506055679550395}
   serializedVersion: 2
-  m_LocalRotation: {x: -8.54473e-40, y: 4.27236e-40, z: 0, w: 1}
+  m_LocalRotation: {x: -8.54789e-40, y: 4.27395e-40, z: 0, w: 1}
   m_LocalPosition: {x: -94.73, y: 5.42, z: -37.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
