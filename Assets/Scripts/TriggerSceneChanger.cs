@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // For UI components if using Image instead of SpriteRenderer
+using UnityEngine.UI;
+using UnityEngine.InputSystem; // Required for the new Input System
 
 public class TriggerSceneChanger : MonoBehaviour
 {
@@ -12,6 +13,24 @@ public class TriggerSceneChanger : MonoBehaviour
     public Image levelUIImage; // Optional: If using UI Image for the map
 
     private bool playerInTrigger = false;
+    private PlayerInputs inputActions; // Input System actions
+
+    public Image popupImage; // Reference to the popup-specific image
+
+    private void Awake()
+    {
+        inputActions = new PlayerInputs(); // Initialize input actions
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
 
     private void Start()
     {
@@ -50,14 +69,23 @@ public class TriggerSceneChanger : MonoBehaviour
 
             if (hasCompletedRequiredLevel || levelIndex == 1) // Level 1 is always accessible
             {
-                ShowPopUp($"Press 'X' to enter level.");
+                ShowPopUp($"Press     to enter.");
+                
+                // Show the popup-specific image
+                if (popupImage != null)
+                    popupImage.gameObject.SetActive(true);
             }
             else
             {
                 ShowPopUp($"This level is locked.");
+                
+                // Hide the popup-specific image
+                if (popupImage != null)
+                    popupImage.gameObject.SetActive(false);
             }
         }
     }
+
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -73,7 +101,7 @@ public class TriggerSceneChanger : MonoBehaviour
 
     private void Update()
     {
-        if (playerInTrigger && Input.GetKeyDown(KeyCode.X))
+        if (playerInTrigger && inputActions.InGame.EnterLevel.triggered) // Using the input action
         {
             bool hasCompletedRequiredLevel = PlayerPrefs.GetInt("Level" + requiredLevelIndex + "Completed", 0) == 1;
 

@@ -98,6 +98,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnterLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""6a35e99c-5376-40c7-95ad-0f152d27df22"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -364,6 +373,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""DoubleJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21d68bdf-5dd6-4c4c-89bd-ce000c635104"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnterLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96fcc2f3-e5d8-43ec-b4c9-8f36d706fee2"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnterLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -380,6 +411,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_InGame_SmashKey = m_InGame.FindAction("SmashKey", throwIfNotFound: true);
         m_InGame_DashKey = m_InGame.FindAction("DashKey", throwIfNotFound: true);
         m_InGame_DoubleJump = m_InGame.FindAction("DoubleJump", throwIfNotFound: true);
+        m_InGame_EnterLevel = m_InGame.FindAction("EnterLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -449,6 +481,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_SmashKey;
     private readonly InputAction m_InGame_DashKey;
     private readonly InputAction m_InGame_DoubleJump;
+    private readonly InputAction m_InGame_EnterLevel;
     public struct InGameActions
     {
         private @PlayerInputs m_Wrapper;
@@ -461,6 +494,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @SmashKey => m_Wrapper.m_InGame_SmashKey;
         public InputAction @DashKey => m_Wrapper.m_InGame_DashKey;
         public InputAction @DoubleJump => m_Wrapper.m_InGame_DoubleJump;
+        public InputAction @EnterLevel => m_Wrapper.m_InGame_EnterLevel;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -494,6 +528,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @DoubleJump.started += instance.OnDoubleJump;
             @DoubleJump.performed += instance.OnDoubleJump;
             @DoubleJump.canceled += instance.OnDoubleJump;
+            @EnterLevel.started += instance.OnEnterLevel;
+            @EnterLevel.performed += instance.OnEnterLevel;
+            @EnterLevel.canceled += instance.OnEnterLevel;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -522,6 +559,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @DoubleJump.started -= instance.OnDoubleJump;
             @DoubleJump.performed -= instance.OnDoubleJump;
             @DoubleJump.canceled -= instance.OnDoubleJump;
+            @EnterLevel.started -= instance.OnEnterLevel;
+            @EnterLevel.performed -= instance.OnEnterLevel;
+            @EnterLevel.canceled -= instance.OnEnterLevel;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -549,5 +589,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnSmashKey(InputAction.CallbackContext context);
         void OnDashKey(InputAction.CallbackContext context);
         void OnDoubleJump(InputAction.CallbackContext context);
+        void OnEnterLevel(InputAction.CallbackContext context);
     }
 }
