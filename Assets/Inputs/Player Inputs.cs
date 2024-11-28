@@ -107,6 +107,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Button"",
+                    ""type"": ""Button"",
+                    ""id"": ""93eb87d4-fb3d-4c96-a092-11f768abb41a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -395,6 +404,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""EnterLevel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db9a7a3d-a8ee-429c-9eac-8ef092a22b26"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Button"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -412,6 +432,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_InGame_DashKey = m_InGame.FindAction("DashKey", throwIfNotFound: true);
         m_InGame_DoubleJump = m_InGame.FindAction("DoubleJump", throwIfNotFound: true);
         m_InGame_EnterLevel = m_InGame.FindAction("EnterLevel", throwIfNotFound: true);
+        m_InGame_Button = m_InGame.FindAction("Button", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -482,6 +503,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_DashKey;
     private readonly InputAction m_InGame_DoubleJump;
     private readonly InputAction m_InGame_EnterLevel;
+    private readonly InputAction m_InGame_Button;
     public struct InGameActions
     {
         private @PlayerInputs m_Wrapper;
@@ -495,6 +517,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @DashKey => m_Wrapper.m_InGame_DashKey;
         public InputAction @DoubleJump => m_Wrapper.m_InGame_DoubleJump;
         public InputAction @EnterLevel => m_Wrapper.m_InGame_EnterLevel;
+        public InputAction @Button => m_Wrapper.m_InGame_Button;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -531,6 +554,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @EnterLevel.started += instance.OnEnterLevel;
             @EnterLevel.performed += instance.OnEnterLevel;
             @EnterLevel.canceled += instance.OnEnterLevel;
+            @Button.started += instance.OnButton;
+            @Button.performed += instance.OnButton;
+            @Button.canceled += instance.OnButton;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -562,6 +588,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @EnterLevel.started -= instance.OnEnterLevel;
             @EnterLevel.performed -= instance.OnEnterLevel;
             @EnterLevel.canceled -= instance.OnEnterLevel;
+            @Button.started -= instance.OnButton;
+            @Button.performed -= instance.OnButton;
+            @Button.canceled -= instance.OnButton;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -590,5 +619,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnDashKey(InputAction.CallbackContext context);
         void OnDoubleJump(InputAction.CallbackContext context);
         void OnEnterLevel(InputAction.CallbackContext context);
+        void OnButton(InputAction.CallbackContext context);
     }
 }
