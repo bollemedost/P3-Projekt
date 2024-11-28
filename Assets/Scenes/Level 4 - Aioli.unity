@@ -1499,6 +1499,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2907,6 +2911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3063,6 +3071,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4577,6 +4589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4699,6 +4715,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f24ad78d5a1e3e743904edfb1bc13cc4, type: 3}
       propertyPath: m_Name
       value: Flag
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f24ad78d5a1e3e743904edfb1bc13cc4, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6226,6 +6246,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (47)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8150,6 +8174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8420,7 +8448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458528054}
   serializedVersion: 2
-  m_LocalRotation: {x: -1.037395e-39, y: 5.18698e-40, z: 0, w: 1}
+  m_LocalRotation: {x: -1.04251e-39, y: 5.21255e-40, z: 0, w: 1}
   m_LocalPosition: {x: -49.79, y: 11.86, z: -23.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8590,6 +8618,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9282,6 +9314,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11681,6 +11717,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11803,6 +11843,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13140,6 +13184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14044,6 +14092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14683,6 +14735,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16743,6 +16799,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17974,6 +18034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flag (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f24ad78d5a1e3e743904edfb1bc13cc4, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19147,6 +19211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19269,6 +19337,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20527,6 +20599,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22618,6 +22694,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26234,6 +26314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26779,6 +26863,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27590,6 +27678,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32837,6 +32929,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33109,6 +33205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal_2 (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33231,6 +33331,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34261,6 +34365,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
       propertyPath: m_Name
       value: crystal_2 (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557bcddba35674634a5f91460d73acbf, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
