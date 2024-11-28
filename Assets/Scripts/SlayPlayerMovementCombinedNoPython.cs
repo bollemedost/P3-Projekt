@@ -44,9 +44,9 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     private PlayerAnimationController animationHandler;
 
     // UI Elements for Power-Up Texts
-    [SerializeField] private Text doubleJumpText;
-    [SerializeField] private Text dashText;
-    [SerializeField] private Text smashText;
+    [SerializeField] private Image doubleJumpImage;
+    [SerializeField] private Image dashImage;
+    [SerializeField] private Image smashImage;
 
     private void Awake()
     {
@@ -57,10 +57,10 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
 
         SetLevelBasedOnScene();
 
-        // Make sure the UI texts are hidden at the start
-        doubleJumpText.gameObject.SetActive(false);
-        dashText.gameObject.SetActive(false);
-        smashText.gameObject.SetActive(false);
+        // Ensure the UI images are hidden at the start
+        doubleJumpImage.gameObject.SetActive(false);
+        dashImage.gameObject.SetActive(false);
+        smashImage.gameObject.SetActive(false);
     }
 
     private void SetLevelBasedOnScene()
@@ -169,8 +169,8 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         isDashActive = false;
         UnityEngine.Debug.Log("Double Jump Activated");
 
-        // Show Double Jump text
-        ShowPowerUpText(doubleJumpText);
+        // Show Double Jump image
+        ShowPowerUpImage(doubleJumpImage);
     }
 
     private void ActivateDash()
@@ -179,8 +179,8 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         isDoubleJumpActive = false;
         UnityEngine.Debug.Log("Dash Activated");
 
-        // Show Dash text
-        ShowPowerUpText(dashText);
+        // Show Dash image
+        ShowPowerUpImage(dashImage);
     }
 
     private void ActivateSmash()
@@ -190,8 +190,8 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
         isDashActive = false;
         UnityEngine.Debug.Log("Smash Activated");
 
-        // Show Smash text
-        ShowPowerUpText(smashText);
+         // Show Smash image
+        ShowPowerUpImage(smashImage);
     }
 
     private void PerformSmash()
@@ -288,15 +288,15 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     }
 
     // Method to show power-up text
-    private void ShowPowerUpText(Text powerUpText)
+  private void ShowPowerUpImage(Image powerUpImage)
     {
-        powerUpText.gameObject.SetActive(true);
-        StartCoroutine(HidePowerUpTextAfterDelay(powerUpText));
+        powerUpImage.gameObject.SetActive(true);
+        StartCoroutine(HidePowerUpImageAfterDelay(powerUpImage));
     }
 
-    private IEnumerator HidePowerUpTextAfterDelay(Text powerUpText)
+    private IEnumerator HidePowerUpImageAfterDelay(Image powerUpImage)
     {
         yield return new WaitForSeconds(1f);
-        powerUpText.gameObject.SetActive(false);
+        powerUpImage.gameObject.SetActive(false);
     }
 }
