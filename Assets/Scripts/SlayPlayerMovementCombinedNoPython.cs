@@ -67,11 +67,11 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
     {
         string activeSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-        if (activeSceneName == "scene brat slay brat slay purr")
+        if (activeSceneName == "Level 3 - Emil")
         {
             currentLevel = Level2Unlock;
         }
-        else if (activeSceneName == "Level 3 - Emil" || activeSceneName == "Level 4 - Aioli")
+        else if (activeSceneName == "scene brat slay brat slay purr" || activeSceneName == "Level 4 - Aioli")
         {
             currentLevel = Level3Unlock;
         }
@@ -134,13 +134,13 @@ public class SlayPlayerMovementCombinedNoPython : MonoBehaviour
             animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
         }
 
-        if (currentLevel >= Level2Unlock && inputActions["DashKey"].WasPressedThisFrame())
+        if (currentLevel >= Level3Unlock && inputActions["DashKey"].WasPressedThisFrame())
         {
             ActivateDash();
             animationHandler.TriggerPowerUpAnimation();  // Trigger power-up animation
         }
 
-        if (currentLevel >= Level3Unlock && inputActions["SmashKey"].WasPressedThisFrame())
+        if (currentLevel >= Level2Unlock && inputActions["SmashKey"].WasPressedThisFrame())
         {
             ActivateSmash();
         }
