@@ -72,9 +72,26 @@ public class CameraRotationHandler : MonoBehaviour
 
     private void UpdateCameraPosition()
     {
-        // Smoothly move the camera to the new position using SmoothDamp
+        // Calculate the desired camera position based on the offset and rotation
         Vector3 desiredPosition = transform.position + targetRotation * cameraOffset;
-        cameraTransform.position = Vector3.SmoothDamp(cameraTransform.position, desiredPosition, ref currentVelocity, positionSmoothingFactor);
-        cameraTransform.LookAt(transform.position); // Ensure the camera is always looking at the player
+
+        // Define a buffer distance to stop the camera before the collider
+        float bufferDistance = 0.5f;
+
+        // Use raycasting to check for obstacles between the player and the desired camera position
+        RaycastHit hit;
+        if (Physics.Linecast(transform.position, desiredPosition, out hit))
+        {
+            // If there is an obstacle, position the camera slightly before the point of impact
+            cameraTransform.position = hit.point - (desiredPosition - transform.position).normalized * bufferDistance;
+        }
+        else
+        {
+            // Smoothly move the camera to the new position using SmoothDamp
+            cameraTransform.position = Vector3.SmoothDamp(cameraTransform.position, desiredPosition, ref currentVelocity, positionSmoothingFactor);
+        }
+
+        // Ensure the camera is always looking at the player
+        cameraTransform.LookAt(transform.position);
     }
 }
