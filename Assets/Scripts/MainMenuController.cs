@@ -13,7 +13,7 @@ public class MainMenuController : MonoBehaviour
         Debug.Log("Game progress has been reset.");
 
         // Load the Level Map scene
-        SceneManager.LoadScene(1); // 0 is the build index of the first scene
+        SceneManager.LoadScene(0); // 0 is the build index of the first scene
     }
 
     // Method to resume the game without resetting progress
@@ -22,6 +22,6 @@ public class MainMenuController : MonoBehaviour
         Debug.Log("Resuming game from the last saved state.");
 
         // Load the Level Map or the last unlocked level
-        SceneManager.LoadScene(1); // Replace with your level map or hub scene
+        SceneManager.LoadScene(0); // Replace with your level map or hub scene
     }
 }

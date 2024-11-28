@@ -1061,8 +1061,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ebfdc478c484a12bb0bac3b47a5642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelIndex: 3
-  requiredLevelIndex: 2
+  levelIndex: 2
+  requiredLevelIndex: 1
   popUpPanel: {fileID: 742529708}
   popUpText: {fileID: 2101389595}
   completedSprite: {fileID: 21300000, guid: 02adb818aaabe4653813dfd85b5bf9e6, type: 3}
@@ -1158,8 +1158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ebfdc478c484a12bb0bac3b47a5642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelIndex: 5
-  requiredLevelIndex: 4
+  levelIndex: 4
+  requiredLevelIndex: 3
   popUpPanel: {fileID: 742529708}
   popUpText: {fileID: 2101389595}
   completedSprite: {fileID: 21300000, guid: 5c551b06f43b54727b07229d65d1663b, type: 3}
@@ -1658,8 +1658,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ebfdc478c484a12bb0bac3b47a5642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelIndex: 2
-  requiredLevelIndex: 1
+  levelIndex: 1
+  requiredLevelIndex: 0
   popUpPanel: {fileID: 742529708}
   popUpText: {fileID: 2101389595}
   completedSprite: {fileID: 21300000, guid: 59616cfd2324140f4b99cf3ff82ade69, type: 3}
@@ -1755,8 +1755,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ebfdc478c484a12bb0bac3b47a5642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelIndex: 4
-  requiredLevelIndex: 3
+  levelIndex: 3
+  requiredLevelIndex: 2
   popUpPanel: {fileID: 742529708}
   popUpText: {fileID: 2101389595}
   completedSprite: {fileID: 21300000, guid: 556b3a81f172f46898530a53de616f5c, type: 3}

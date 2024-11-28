@@ -7,20 +7,21 @@ public class LevelCompleteTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Check if the player has entered the trigger
         if (other.CompareTag("Player"))
         {
-            // Save the completion state
-            PlayerPrefs.SetInt("Level" + levelIndex + "Completed", 2); // Use 2 to indicate completed
-            PlayerPrefs.Save();
+            // Save the completion of this level (e.g., Level 1)
+            PlayerPrefs.SetInt("Level" + levelIndex + "Completed", 1); // Save the completion state
+            PlayerPrefs.Save(); // Make sure to save the PlayerPrefs immediately
 
+            // Optionally, log it for debugging
             Debug.Log($"Level {levelIndex} completed. Progress saved to PlayerPrefs.");
 
-            // Load the Map scene (index 1)
-            SceneManager.LoadScene(1);
+            // Load the Level Map scene (or any other scene you want to transition to)
+            SceneManager.LoadScene(0); // Replace with the name or index of your level map scene
         }
     }
 }
-
 
 
 //Partly used ChatGPT to generate the code snippet

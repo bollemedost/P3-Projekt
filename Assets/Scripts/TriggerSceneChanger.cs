@@ -1,25 +1,25 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
+using UnityEngine.InputSystem; // Required for the new Input System
 
 public class TriggerSceneChanger : MonoBehaviour
 {
     public int levelIndex; // The index of the level this collider is linked to
-    private int requiredLevelIndex; // The index of the prerequisite level
-    public GameObject popUpPanel; // UI Panel for messages
-    public Text popUpText; // Text for messages
-    public Sprite completedSprite; // Sprite to indicate level completion
-    public Image levelUIImage; // Image to update for completed levels
+    public int requiredLevelIndex; // The index of the required level for this level to be accessible
+    public GameObject popUpPanel; // Reference to the UI Panel
+    public Text popUpText; // Reference to the Text inside the Panel
+    public Sprite completedSprite; // Sprite to display when level is completed
+    public Image levelUIImage; // Optional: If using UI Image for the map
 
     private bool playerInTrigger = false;
-    private PlayerInputs inputActions;
+    private PlayerInputs inputActions; // Input System actions
 
-    public Image popupImage; // Optional image in the pop-up
+    public Image popupImage; // Reference to the popup-specific image
 
     private void Awake()
     {
-        inputActions = new PlayerInputs();
+        inputActions = new PlayerInputs(); // Initialize input actions
     }
 
     private void OnEnable()
@@ -34,25 +34,27 @@ public class TriggerSceneChanger : MonoBehaviour
 
     private void Start()
     {
-        // Required level is the previous index
         requiredLevelIndex = levelIndex - 1;
 
-        // Update sprite if the level is completed
-        if (PlayerPrefs.GetInt("Level" + levelIndex + "Completed", 0) == 2)
+        // Check if the level is already completed and update the sprite
+        if (PlayerPrefs.GetInt("Level" + levelIndex + "Completed", 0) == 1)
         {
             UpdateLevelSprite();
         }
 
-        // Hide pop-up initially
+        // Ensure the pop-up is hidden initially
         if (popUpPanel != null)
             popUpPanel.SetActive(false);
     }
 
     private void UpdateLevelSprite()
     {
-        if (completedSprite != null && levelUIImage != null)
+        if (completedSprite != null)
         {
-            levelUIImage.sprite = completedSprite;
+            if (levelUIImage != null)
+            {
+                levelUIImage.sprite = completedSprite; // Change the sprite for UI Image
+            }
         }
     }
 
@@ -62,25 +64,28 @@ public class TriggerSceneChanger : MonoBehaviour
         {
             playerInTrigger = true;
 
-            // Check if the required level is completed
-            bool hasCompletedRequiredLevel = PlayerPrefs.GetInt("Level" + requiredLevelIndex + "Completed", 0) == 2;
+            // Check if player has completed the required level
+            bool hasCompletedRequiredLevel = PlayerPrefs.GetInt("Level" + requiredLevelIndex + "Completed", 0) == 1;
 
-            if (hasCompletedRequiredLevel || levelIndex == 2) // Level 1 is always accessible
+            if (hasCompletedRequiredLevel || levelIndex == 1) // Level 1 is always accessible
             {
-                ShowPopUp("Press [Enter] to start this level.");
-
+                ShowPopUp($"Press     to enter.");
+                
+                // Show the popup-specific image
                 if (popupImage != null)
                     popupImage.gameObject.SetActive(true);
             }
             else
             {
-                ShowPopUp("This level is locked.");
-
+                ShowPopUp($"This level is locked.");
+                
+                // Hide the popup-specific image
                 if (popupImage != null)
                     popupImage.gameObject.SetActive(false);
             }
         }
     }
+
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -88,6 +93,7 @@ public class TriggerSceneChanger : MonoBehaviour
         {
             playerInTrigger = false;
 
+            // Hide pop-up when the player leaves
             if (popUpPanel != null)
                 popUpPanel.SetActive(false);
         }
@@ -95,31 +101,33 @@ public class TriggerSceneChanger : MonoBehaviour
 
     private void Update()
     {
-        if (playerInTrigger && inputActions.InGame.EnterLevel.triggered)
+        if (playerInTrigger && inputActions.InGame.EnterLevel.triggered) // Using the input action
         {
-            bool hasCompletedRequiredLevel = PlayerPrefs.GetInt("Level" + requiredLevelIndex + "Completed", 0) == 2;
+            bool hasCompletedRequiredLevel = PlayerPrefs.GetInt("Level" + requiredLevelIndex + "Completed", 0) == 1;
 
-            if (hasCompletedRequiredLevel || levelIndex == 2)
+            if (hasCompletedRequiredLevel || levelIndex == 1) // Level 1 is always accessible
             {
-                // Save player's position
+                // Save player's position ONLY when entering a level from the map
                 Vector3 playerPosition = GameObject.FindGameObjectWithTag("2D Player").transform.position;
                 PlayerPrefs.SetFloat("PlayerPosX", playerPosition.x);
                 PlayerPrefs.SetFloat("PlayerPosY", playerPosition.y);
                 PlayerPrefs.SetFloat("PlayerPosZ", playerPosition.z);
                 PlayerPrefs.Save();
 
-                // Mark level as completed
+                // Mark this level as completed for later
                 PlayerPrefs.SetInt("Level" + levelIndex + "Completed", 1);
                 PlayerPrefs.Save();
 
+                // Update the sprite to the completed version
                 UpdateLevelSprite();
 
-                Debug.Log($"Loading level {levelIndex}.");
+                // Load the level
+                Debug.Log("Loading level " + levelIndex);
                 SceneManager.LoadScene(levelIndex);
             }
             else
             {
-                ShowPopUp("Complete the required level first.");
+                ShowPopUp($"Complete another level first.");
             }
         }
     }
