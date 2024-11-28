@@ -11,6 +11,7 @@ TagManager:
   - Collectable
   - 2D Player
   - Sleigh
+  - IgnoreCamera
   layers:
   - Default
   - TransparentFX

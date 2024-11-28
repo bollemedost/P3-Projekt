@@ -8420,7 +8420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458528054}
   serializedVersion: 2
-  m_LocalRotation: {x: -1.034828e-39, y: 5.17414e-40, z: 0, w: 1}
+  m_LocalRotation: {x: -1.037395e-39, y: 5.18698e-40, z: 0, w: 1}
   m_LocalPosition: {x: -49.79, y: 11.86, z: -23.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15486,7 +15486,7 @@ GameObject:
   - component: {fileID: 974476710}
   m_Layer: 6
   m_Name: Barrier front (1)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29099,7 +29099,7 @@ GameObject:
   - component: {fileID: 1799547750}
   m_Layer: 6
   m_Name: Barrier front
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

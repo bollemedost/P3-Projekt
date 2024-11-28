@@ -15,6 +15,7 @@ public class CameraRotationHandler : MonoBehaviour
     [SerializeField] private float verticalClampMax = 60f; // Maximum X-axis rotation (down)
     [SerializeField] private float smoothingFactor = 0.1f; // Smoothing factor for input
     [SerializeField] private float positionSmoothingFactor = 0.1f; // Smoothing for camera movement
+    [SerializeField] private string ignoreTag = "IgnoreCamera"; // Tag for objects to be ignored by the camera
 
     private Quaternion targetRotation; // Target rotation for the camera
     private float currentPan = 0f; // Current Y-axis pan value based on input
@@ -24,11 +25,17 @@ public class CameraRotationHandler : MonoBehaviour
 
     private Vector3 currentVelocity = Vector3.zero; // For SmoothDamp
 
-    private void Start()
+    private PlayerInput playerInput; // Reference to PlayerInput component
+    private InputAction lookAction; // Input action for camera look
+
+    private void Awake()
     {
         cameraTransform = Camera.main.transform;
         targetRotation = Quaternion.Euler(0, 0, 0); // Initial target rotation to face the initial direction
         UpdateCameraPosition(); // Set initial position based on offset
+
+        playerInput = GetComponent<PlayerInput>();
+        lookAction = playerInput.actions["Look"]; // Ensure this matches your Input System action
     }
 
     private void LateUpdate()
@@ -38,29 +45,24 @@ public class CameraRotationHandler : MonoBehaviour
         UpdateCameraPosition();
     }
 
-    // This method will be called from the input system
-    public void OnLook(InputValue value)
+    private void Update()
     {
-        Vector2 lookDelta = value.Get<Vector2>();
+        // Get input from the Input System
+        Vector2 lookDelta = lookAction.ReadValue<Vector2>();
 
-        // Adjust the target pan value based on the input delta for side-to-side movement
-        targetPan += lookDelta.x * smoothingFactor; // Apply smoothing to the mouse input (yaw)
-
-        // Adjust the target pitch value based on the input delta for up and down movement
-        targetPitch -= lookDelta.y * smoothingFactor; // Apply smoothing to the mouse input (pitch)
+        // Adjust target pan and pitch based on input
+        targetPan += lookDelta.x * smoothingFactor;
+        targetPitch -= lookDelta.y * smoothingFactor;
 
         // Clamp both horizontal (yaw) and vertical (pitch) rotations
         targetPan = Mathf.Clamp(targetPan, panClampMin, panClampMax);
         targetPitch = Mathf.Clamp(targetPitch, verticalClampMin, verticalClampMax);
-    }
 
-    private void Update()
-    {
         // Smoothly interpolate the current pan and pitch values towards their respective targets
         currentPan = Mathf.Lerp(currentPan, targetPan, Time.deltaTime * rotationSpeed);
         currentPitch = Mathf.Lerp(currentPitch, targetPitch, Time.deltaTime * rotationSpeed);
 
-        // Update target rotation, including yaw (y) and pitch (x)
+        // Update target rotation
         SetTargetRotation(currentPan, currentPitch);
     }
 
@@ -82,8 +84,16 @@ public class CameraRotationHandler : MonoBehaviour
         RaycastHit hit;
         if (Physics.Linecast(transform.position, desiredPosition, out hit))
         {
-            // If there is an obstacle, position the camera slightly before the point of impact
-            cameraTransform.position = hit.point - (desiredPosition - transform.position).normalized * bufferDistance;
+            // Ignore colliders with the specified tag
+            if (hit.collider.CompareTag(ignoreTag))
+            {
+                cameraTransform.position = Vector3.SmoothDamp(cameraTransform.position, desiredPosition, ref currentVelocity, positionSmoothingFactor);
+            }
+            else
+            {
+                // Position the camera slightly before the point of impact
+                cameraTransform.position = hit.point - (desiredPosition - transform.position).normalized * bufferDistance;
+            }
         }
         else
         {

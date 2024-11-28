@@ -15820,7 +15820,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859080570}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.90646e-40, y: 1.95323e-40, z: 0, w: 1}
+  m_LocalRotation: {x: -3.90999e-40, y: 1.955e-40, z: 0, w: 1}
   m_LocalPosition: {x: -5.31, y: 2.79, z: -13.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -38005,7 +38005,7 @@ GameObject:
   - component: {fileID: 2045321867}
   m_Layer: 0
   m_Name: Quad
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
