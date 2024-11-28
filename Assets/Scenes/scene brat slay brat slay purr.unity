@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.659
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.51148945, g: 0.566429, b: 0.6539517, a: 0.659}
+  m_IndirectSpecularColor: {r: 0.51148015, g: 0.5664237, b: 0.65394926, a: 0.659}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -78938,6 +78938,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
+      propertyPath: dashImage
+      value: 
+      objectReference: {fileID: 1214539779}
+    - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
+      propertyPath: smashImage
+      value: 
+      objectReference: {fileID: 1209373620}
+    - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
+      propertyPath: doubleJumpImage
+      value: 
+      objectReference: {fileID: 201008683}
     - target: {fileID: 2915499094101899814, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
       propertyPath: m_Camera
       value: 
@@ -80594,7 +80606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6225506055679550395}
   serializedVersion: 2
-  m_LocalRotation: {x: -8.56006e-40, y: 4.28003e-40, z: 0, w: 1}
+  m_LocalRotation: {x: -8.56277e-40, y: 4.28139e-40, z: 0, w: 1}
   m_LocalPosition: {x: -94.73, y: 5.42, z: -37.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
