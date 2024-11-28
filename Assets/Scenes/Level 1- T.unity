@@ -16156,7 +16156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859080570}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.93807e-40, y: 1.96903e-40, z: 0, w: 1}
+  m_LocalRotation: {x: -3.94953e-40, y: 1.97477e-40, z: 0, w: 1}
   m_LocalPosition: {x: -5.31, y: 2.79, z: -13.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18974,9 +18974,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
+      propertyPath: dashImage
+      value: 
+      objectReference: {fileID: 697069933}
+    - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
+      propertyPath: smashImage
+      value: 
+      objectReference: {fileID: 670744775}
+    - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
+      propertyPath: doubleJumpImage
+      value: 
+      objectReference: {fileID: 1138391161}
     - target: {fileID: 4537073454867700278, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
       propertyPath: dashText
       value: 
