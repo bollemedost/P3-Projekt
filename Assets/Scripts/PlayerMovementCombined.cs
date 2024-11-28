@@ -29,6 +29,7 @@ public class PlayerMovementCombined : MonoBehaviour
     private float lastDashTime = 0f;
     private bool isDashActive = false;
     private TrailRenderer trailRenderer;
+    private bool canDash = true;
 
     //Double Jump
     private bool isDoubleJumpActive = false;
@@ -120,7 +121,7 @@ public class PlayerMovementCombined : MonoBehaviour
 
     private void OnDash(InputValue value)
     {
-        if (value.isPressed && isDashActive && Time.time >= lastDashTime + dashCooldown && !isDashing)
+        if (value.isPressed && isDashActive && Time.time >= lastDashTime + dashCooldown && !isDashing && canDash)
         {
             StartCoroutine(Dash());
         }
@@ -329,13 +330,15 @@ public class PlayerMovementCombined : MonoBehaviour
             if (isGrounded)
             {
                 canDoubleJump = true;
+                canDash = true; // Reset dash availability when grounded
             }
         }
     }
 
     public IEnumerator Dash()
     {
-         isDashing = true;
+        isDashing = true;
+        canDash = false; // Prevent dashing again until grounded
         lastDashTime = Time.time;
 
         // Trigger dash animation once
