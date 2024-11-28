@@ -67,7 +67,7 @@ public class TriggerSceneChanger : MonoBehaviour
 
             if (hasCompletedRequiredLevel || levelIndex == 2) // Level 1 is always accessible
             {
-                ShowPopUp("Press [Enter] to start this level.");
+                ShowPopUp("Press     to start this level.");
 
                 if (popupImage != null)
                     popupImage.gameObject.SetActive(true);
