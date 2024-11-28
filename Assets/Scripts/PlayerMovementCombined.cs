@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovementCombined : MonoBehaviour
 {
@@ -57,6 +58,10 @@ public class PlayerMovementCombined : MonoBehaviour
     private float inputCooldown = 0.5f; // Cooldown in seconds
     private float lastInputTime = -Mathf.Infinity;
 
+    // UI Elements for Power-Up Images
+    [SerializeField] private Image doubleJumpImage;
+    [SerializeField] private Image dashImage;
+    [SerializeField] private Image smashImage;
 
     private void Awake()
     {
@@ -67,6 +72,11 @@ public class PlayerMovementCombined : MonoBehaviour
         animationHandler = GetComponent<PlayerAnimationController>();
 
         SetLevelBasedOnScene(); // Automatically set level based on active scene
+
+        // Ensure the UI images are hidden at the start
+        doubleJumpImage.gameObject.SetActive(false);
+        dashImage.gameObject.SetActive(false);
+        smashImage.gameObject.SetActive(false);
     }
 
     private void SetLevelBasedOnScene()
@@ -271,6 +281,9 @@ public class PlayerMovementCombined : MonoBehaviour
 
         // Trigger the power-up animation when Double Jump is activated
         animationHandler.TriggerPowerUpAnimation();
+
+        // Show Double Jump image
+        ShowPowerUpImage(doubleJumpImage);
     }
 
     private void ActivateDash()
@@ -282,6 +295,9 @@ public class PlayerMovementCombined : MonoBehaviour
 
         // Trigger the power-up animation when Dash is activated
         animationHandler.TriggerPowerUpAnimation();
+
+        // Show Dash image
+        ShowPowerUpImage(dashImage);
     }
 
     private void ActivateSmash()
@@ -293,6 +309,9 @@ public class PlayerMovementCombined : MonoBehaviour
 
         // Trigger the power-up animation when Smash is activated
         animationHandler.TriggerPowerUpAnimation();
+
+        // Show Smash image
+        ShowPowerUpImage(smashImage);
     }
 
     public bool IsSmashActive()
@@ -376,5 +395,17 @@ public class PlayerMovementCombined : MonoBehaviour
             // Smoothly rotate towards the target rotation
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    private void ShowPowerUpImage(Image powerUpImage)
+    {
+        powerUpImage.gameObject.SetActive(true);
+        StartCoroutine(HidePowerUpImageAfterDelay(powerUpImage));
+    }
+
+      private IEnumerator HidePowerUpImageAfterDelay(Image powerUpImage)
+    {
+        yield return new WaitForSeconds(1f);
+        powerUpImage.gameObject.SetActive(false);
     }
 }
