@@ -4,50 +4,36 @@ public class AudioManagerSlay : MonoBehaviour
 {
     public static AudioManagerSlay Instance;
 
-    // References to audio sources for different types of sounds
-    private AudioSource audioSource;
-    public AudioClip playerAnimationClip;
-    public AudioClip backgroundMusicClip;
+    // Audio clips for different actions
     public AudioClip jumpSoundClip;
+    public AudioClip doubleJumpSoundClip;
+    public AudioClip dashSoundClip;
+    public AudioClip smashSoundClip;
+    public AudioClip powerUpSoundClip;
 
-    // Ensure there is only one instance of the AudioManager
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Prevents this object from being destroyed on scene load
+            DontDestroyOnLoad(gameObject);  // Keep the AudioManager persistent across scenes
         }
         else
         {
-            Destroy(gameObject); // If an instance already exists, destroy this one
+            Destroy(gameObject);  // If another instance exists, destroy this one
         }
 
-        // Create or get the AudioSource component
         audioSource = GetComponent<AudioSource>();
-    }
 
-    // Play a sound when the player performs an animation (example)
-    public void PlayAnimationSound()
-    {
-        if (playerAnimationClip != null)
+        if (audioSource == null)
         {
-            audioSource.PlayOneShot(playerAnimationClip);
+            Debug.LogError("AudioSource component is missing on the AudioManager!");
         }
     }
 
-    // Play background music
-    public void PlayBackgroundMusic()
-    {
-        if (backgroundMusicClip != null)
-        {
-            audioSource.clip = backgroundMusicClip;
-            audioSource.loop = true;
-            audioSource.Play();
-        }
-    }
-
-    // Play a jump sound
+    // Method to play the jump sound
     public void PlayJumpSound()
     {
         if (jumpSoundClip != null)
@@ -56,9 +42,39 @@ public class AudioManagerSlay : MonoBehaviour
         }
     }
 
-    // Stop the current sound
-    public void StopSound()
+    // Method to play the double jump sound
+    public void PlayDoubleJumpSound()
     {
-        audioSource.Stop();
+        if (doubleJumpSoundClip != null)
+        {
+            audioSource.PlayOneShot(doubleJumpSoundClip);
+        }
+    }
+
+    // Method to play the dash sound
+    public void PlayDashSound()
+    {
+        if (dashSoundClip != null)
+        {
+            audioSource.PlayOneShot(dashSoundClip);
+        }
+    }
+
+    // Method to play the smash sound
+    public void PlaySmashSound()
+    {
+        if (smashSoundClip != null)
+        {
+            audioSource.PlayOneShot(smashSoundClip);
+        }
+    }
+
+    // Method to play the power-up sound
+    public void PlayPowerUpSound()
+    {
+        if (powerUpSoundClip != null)
+        {
+            audioSource.PlayOneShot(powerUpSoundClip);
+        }
     }
 }
