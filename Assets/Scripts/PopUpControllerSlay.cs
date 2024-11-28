@@ -3,21 +3,33 @@ using UnityEngine.InputSystem;
 
 public class PopUpControllerSlay : MonoBehaviour
 {
-    public GameObject popUpWindow; // Reference to the pop-up panel
+    public GameObject popupWindow; // Assign your popup panel here in the Inspector
+    private bool isPopupActive = false;
+    private PlayerInputs playerInputs;
 
-    public void OnLeftTrigger(InputAction.CallbackContext context)
+    private void Awake()
     {
-        if (context.performed)
-        {
-            TogglePopUp();
-        }
+        // Initialize PlayerInputs
+        playerInputs = new PlayerInputs();
+
+        // Bind the TogglePopup action
+        playerInputs.InGame.Dictionary.performed += OnTogglePopup;
     }
 
-    public void TogglePopUp()
+    private void OnEnable()
     {
-        if (popUpWindow != null)
-        {
-            popUpWindow.SetActive(!popUpWindow.activeSelf);
-        }
+        playerInputs.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInputs.Disable();
+    }
+
+    private void OnTogglePopup(InputAction.CallbackContext context)
+    {
+        // Toggle the popup visibility
+        isPopupActive = !isPopupActive;
+        popupWindow.SetActive(isPopupActive);
     }
 }

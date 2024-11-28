@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Button",
+                    "name": "Dictionary",
                     "type": "Button",
                     "id": "93eb87d4-fb3d-4c96-a092-11f768abb41a",
                     "expectedControlType": "Button",
@@ -390,7 +390,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Button",
+                    "action": "Dictionary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
