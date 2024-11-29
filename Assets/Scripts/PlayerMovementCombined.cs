@@ -236,7 +236,7 @@ public class PlayerMovementCombined : MonoBehaviour
 
     private string LaunchPythonAndGetAction()
     {
-        string pythonPath = "/opt/anaconda3/bin/python3"; // Ensure Python is in your system's PATH
+        string pythonPath = "python"; // Ensure Python is in your system's PATH
         string projectPath = Application.dataPath; // Path to the Assets folder
         string scriptPath = Path.Combine(projectPath, "PythonScript", "Hand_detection.py"); // Dynamically locate the Python script
 

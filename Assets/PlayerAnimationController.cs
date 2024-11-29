@@ -44,25 +44,25 @@ public class PlayerAnimationController : MonoBehaviour
         {
             animator.SetTrigger(Jump);
             hasJumped = true;  // Mark that jump animation was triggered
-            AudioManagerSlay.Instance.PlayJumpSound();  // Play jump sound using AudioManager
+           // AudioManagerSlay.Instance.PlayJumpSound();  // Play jump sound using AudioManager
         }
 
         if (isDoubleJumping) // Trigger double jump
         {
             animator.SetTrigger(DoubleJump);
-            AudioManagerSlay.Instance.PlayDoubleJumpSound();  // Play double jump sound
+           // AudioManagerSlay.Instance.PlayDoubleJumpSound();  // Play double jump sound
         }
 
         if (isDashing) // Trigger dash
         {
             animator.SetTrigger(Dash);
-            AudioManagerSlay.Instance.PlayDashSound();  // Play dash sound
+            //AudioManagerSlay.Instance.PlayDashSound();  // Play dash sound
         }
 
         if (isSmashing) // Trigger smash
         {
             animator.SetTrigger(Smash);
-            AudioManagerSlay.Instance.PlaySmashSound();  // Play smash sound
+           // AudioManagerSlay.Instance.PlaySmashSound();  // Play smash sound
         }
 
         // Reset the jump flag when the player lands
@@ -78,13 +78,13 @@ public class PlayerAnimationController : MonoBehaviour
     public void TriggerDoubleJump()
     {
         animator.SetTrigger(DoubleJump);
-        AudioManagerSlay.Instance.PlayDoubleJumpSound();  // Play double jump sound
+      //  AudioManagerSlay.Instance.PlayDoubleJumpSound();  // Play double jump sound
     }
 
     public void TriggerPowerUpAnimation()
     {
         animator.SetTrigger("PowerUpActivated");  // Trigger the power-up activation animation
-        AudioManagerSlay.Instance.PlayPowerUpSound();  // Play power-up sound
+       // AudioManagerSlay.Instance.PlayPowerUpSound();  // Play power-up sound
     }
 
     public void TriggerDashAnimation()

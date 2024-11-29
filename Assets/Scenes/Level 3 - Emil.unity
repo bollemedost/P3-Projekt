@@ -685,6 +685,9 @@ MonoBehaviour:
   dashCooldown: 1
   cubeExplosion: {fileID: 0}
   rotationSpeed: 10
+  doubleJumpImage: {fileID: 0}
+  dashImage: {fileID: 0}
+  smashImage: {fileID: 0}
 --- !u!54 &115893262
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1624,7 +1627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149406470}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.32531e-40, y: 1.66265e-40, z: 0, w: 1}
+  m_LocalRotation: {x: -3.33077e-40, y: 1.66539e-40, z: 0, w: 1}
   m_LocalPosition: {x: -94.73, y: 5.42, z: -30.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7020,9 +7023,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
+      propertyPath: dashImage
+      value: 
+      objectReference: {fileID: 334274570}
+    - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
+      propertyPath: smashImage
+      value: 
+      objectReference: {fileID: 266279714}
+    - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
+      propertyPath: doubleJumpImage
+      value: 
+      objectReference: {fileID: 1106465827}
     - target: {fileID: 2915499094101899814, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
       propertyPath: m_Camera
       value: 
