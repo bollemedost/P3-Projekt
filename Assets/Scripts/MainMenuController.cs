@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MainMenuController : MonoBehaviour
-{
+{   
     // This method is linked to the "New Game" button
     public void NewGame()
     {
@@ -77,4 +78,7 @@ public class MainMenuController : MonoBehaviour
             Debug.LogError("ControllerSchemePanel not found in the Canvas.");
         }
     }
+
+
+    
 }

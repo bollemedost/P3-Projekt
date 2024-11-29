@@ -55,7 +55,7 @@ public class ShowTextsAfterDelay : MonoBehaviour
 
         // Get the Image component for buttons and all Text components for fading
         var uiImage = obj.GetComponent<Image>();
-        var texts = obj.GetComponentsInChildren<TMP_Text>();
+        var texts = obj.GetComponentsInChildren<Text>();
 
         // Gradually increase alpha value from 0 to 1 over the fade duration
         while (elapsedTime < fadeDuration)
