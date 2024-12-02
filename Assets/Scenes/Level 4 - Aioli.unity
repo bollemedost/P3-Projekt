@@ -8584,7 +8584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458528054}
   serializedVersion: 2
-  m_LocalRotation: {x: -1.138482e-39, y: 5.69241e-40, z: 0, w: 1}
+  m_LocalRotation: {x: -1.161222e-39, y: 5.80611e-40, z: 0, w: 1}
   m_LocalPosition: {x: -49.79, y: 11.86, z: -23.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9639,7 +9639,7 @@ Transform:
   m_GameObject: {fileID: 526963504}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 352.8, y: 1.9, z: 19.008526}
+  m_LocalPosition: {x: 352.8, y: 0.14, z: 19.008526}
   m_LocalScale: {x: 11, y: 25.8, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27647,7 +27647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1049490659022473256, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
       propertyPath: smashImage
@@ -27671,7 +27671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4537073454867700278, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4537073454867700278, guid: fd9dbcd61dd5a28418e095b9d9e792fd, type: 3}
       propertyPath: smashText
@@ -31466,7 +31466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 3, z: 0}
-  speed: 2
+  speed: 1.5
 --- !u!65 &1829309485
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33694,8 +33694,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.81, y: 1, z: 11.55}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 7.257265, y: 5.446213, z: 11.55}
+  m_Center: {x: 1.2763681, y: 0.55576706, z: 0}
 --- !u!4 &1976438940
 Transform:
   m_ObjectHideFlags: 0
