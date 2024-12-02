@@ -1404,7 +1404,7 @@ GameObject:
   - component: {fileID: 133489729}
   m_Layer: 6
   m_Name: WallCorridor (42)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1703,7 +1703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149406470}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.36146e-40, y: 1.68073e-40, z: 0, w: 1}
+  m_LocalRotation: {x: -3.70534e-40, y: 1.85267e-40, z: 0, w: 1}
   m_LocalPosition: {x: -94.73, y: 5.42, z: -30.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2195,7 +2195,7 @@ GameObject:
   - component: {fileID: 307093923}
   m_Layer: 6
   m_Name: WallCorridor (31)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2300,7 +2300,7 @@ GameObject:
   - component: {fileID: 312395353}
   m_Layer: 6
   m_Name: Trappe (8)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2405,7 +2405,7 @@ GameObject:
   - component: {fileID: 324910625}
   m_Layer: 6
   m_Name: Trappe (9)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2510,7 +2510,7 @@ GameObject:
   - component: {fileID: 326801663}
   m_Layer: 6
   m_Name: Trappe (6)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2622,7 +2622,7 @@ GameObject:
   - component: {fileID: 333427320}
   m_Layer: 6
   m_Name: Trappe (10)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3149,7 +3149,7 @@ GameObject:
   - component: {fileID: 387487390}
   m_Layer: 6
   m_Name: WallCorridor (22)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3332,7 +3332,7 @@ GameObject:
   - component: {fileID: 396591517}
   m_Layer: 6
   m_Name: Trappe (11)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3674,7 +3674,7 @@ GameObject:
   - component: {fileID: 458375313}
   m_Layer: 6
   m_Name: WallCorridor (23)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3779,7 +3779,7 @@ GameObject:
   - component: {fileID: 480088414}
   m_Layer: 6
   m_Name: Trappe (5)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3992,7 +3992,7 @@ GameObject:
   - component: {fileID: 495839936}
   m_Layer: 6
   m_Name: Trappe (7)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4221,6 +4221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elephant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c0caf8bd92ff19f4b8d7004a40e6a064, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -7029948723529949830, guid: c0caf8bd92ff19f4b8d7004a40e6a064, type: 3}
@@ -4418,7 +4422,7 @@ GameObject:
   - component: {fileID: 590872132}
   m_Layer: 6
   m_Name: WallCorridor (30)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4959,7 +4963,7 @@ GameObject:
   - component: {fileID: 634727447}
   m_Layer: 6
   m_Name: Trappe (5)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5703,7 +5707,7 @@ GameObject:
   - component: {fileID: 779214619}
   m_Layer: 6
   m_Name: Trappe (6)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5808,7 +5812,7 @@ GameObject:
   - component: {fileID: 789628637}
   m_Layer: 6
   m_Name: Trappe (7)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6266,7 +6270,7 @@ GameObject:
   - component: {fileID: 851427374}
   m_Layer: 0
   m_Name: Stairs
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6816,7 +6820,7 @@ GameObject:
   - component: {fileID: 951858029}
   m_Layer: 6
   m_Name: Trappe (5)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7308,7 +7312,7 @@ GameObject:
   - component: {fileID: 1152856299}
   m_Layer: 6
   m_Name: Trappe (9)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7883,7 +7887,7 @@ GameObject:
   - component: {fileID: 1224021680}
   m_Layer: 6
   m_Name: WallCorridor (41)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8168,7 +8172,7 @@ GameObject:
   - component: {fileID: 1237170149}
   m_Layer: 6
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8273,7 +8277,7 @@ GameObject:
   - component: {fileID: 1258583092}
   m_Layer: 6
   m_Name: WallCorridor (32)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8480,7 +8484,7 @@ GameObject:
   - component: {fileID: 1356420859}
   m_Layer: 6
   m_Name: Trappe (10)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8937,7 +8941,7 @@ GameObject:
   - component: {fileID: 1404866049}
   m_Layer: 6
   m_Name: Trappe (7)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9346,7 +9350,7 @@ GameObject:
   - component: {fileID: 1490778044}
   m_Layer: 6
   m_Name: Trappe (8)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9451,7 +9455,7 @@ GameObject:
   - component: {fileID: 1492347209}
   m_Layer: 6
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9556,7 +9560,7 @@ GameObject:
   - component: {fileID: 1493389602}
   m_Layer: 6
   m_Name: WallCorridor (33)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9766,7 +9770,7 @@ GameObject:
   - component: {fileID: 1544153827}
   m_Layer: 6
   m_Name: Trappe (5)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9871,7 +9875,7 @@ GameObject:
   - component: {fileID: 1545344026}
   m_Layer: 6
   m_Name: WallCorridor (34)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9976,7 +9980,7 @@ GameObject:
   - component: {fileID: 1563378355}
   m_Layer: 6
   m_Name: WallCorridor (28)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10186,7 +10190,7 @@ GameObject:
   - component: {fileID: 1582689692}
   m_Layer: 6
   m_Name: Trappe (7)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11000,7 +11004,7 @@ GameObject:
   - component: {fileID: 1781769925}
   m_Layer: 6
   m_Name: Trappe (5)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11191,7 +11195,7 @@ GameObject:
   - component: {fileID: 1785255955}
   m_Layer: 6
   m_Name: Trappe (4)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11540,7 +11544,7 @@ GameObject:
   - component: {fileID: 1843748143}
   m_Layer: 6
   m_Name: Trappe (6)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11837,7 +11841,7 @@ GameObject:
   - component: {fileID: 1875041557}
   m_Layer: 6
   m_Name: Trappe (6)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12338,7 +12342,7 @@ GameObject:
   - component: {fileID: 1954068079}
   m_Layer: 6
   m_Name: WallCorridor (27)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12692,7 +12696,7 @@ GameObject:
   - component: {fileID: 2055255854}
   m_Layer: 6
   m_Name: WallCorridor (29)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12843,7 +12847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7301230604409341b1a26f856bf393e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupWindow: {fileID: 125663602}
+  popupWindow: {fileID: 1488520196}
 --- !u!4 &2068120313
 Transform:
   m_ObjectHideFlags: 0
@@ -12900,7 +12904,7 @@ GameObject:
   - component: {fileID: 2083319697}
   m_Layer: 6
   m_Name: Trappe (6)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13005,7 +13009,7 @@ GameObject:
   - component: {fileID: 2096286257}
   m_Layer: 6
   m_Name: WallCorridor (21)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13110,7 +13114,7 @@ GameObject:
   - component: {fileID: 2098275686}
   m_Layer: 6
   m_Name: Trappe (7)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13215,7 +13219,7 @@ GameObject:
   - component: {fileID: 2119177930}
   m_Layer: 6
   m_Name: WallCorridor (26)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13610,7 +13614,7 @@ GameObject:
   - component: {fileID: 2133913987}
   m_Layer: 6
   m_Name: WallCorridor (24)
-  m_TagString: Untagged
+  m_TagString: IgnoreCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
