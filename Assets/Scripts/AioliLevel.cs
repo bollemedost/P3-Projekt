@@ -3,14 +3,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
-public class TriggerSceneChanger : MonoBehaviour
+public class AioliLevel : MonoBehaviour
 {
     public int levelIndex; // The index of the level this collider is linked to
     private int requiredLevelIndex; // The index of the prerequisite level
     public GameObject popUpPanel; // UI Panel for messages
     public Text popUpText; // Text for messages
-    public Sprite completedSprite; // Sprite to indicate level completion
-    public Image levelUIImage; // Image to update for completed levels
 
     private bool playerInTrigger = false;
     private PlayerInputs inputActions;
@@ -37,23 +35,9 @@ public class TriggerSceneChanger : MonoBehaviour
         // Required level is the previous index
         requiredLevelIndex = levelIndex - 1;
 
-        // Update sprite if the level is completed
-        if (PlayerPrefs.GetInt("Level" + levelIndex + "Completed", 0) == 2)
-        {
-            UpdateLevelSprite();
-        }
-
         // Hide pop-up initially
         if (popUpPanel != null)
             popUpPanel.SetActive(false);
-    }
-
-    public void UpdateLevelSprite()
-    {
-        if (completedSprite != null && levelUIImage != null)
-        {
-            levelUIImage.sprite = completedSprite;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -111,8 +95,6 @@ public class TriggerSceneChanger : MonoBehaviour
                 // Mark level as completed
                 PlayerPrefs.SetInt("Level" + levelIndex + "Completed", 1);
                 PlayerPrefs.Save();
-
-                UpdateLevelSprite();
 
                 Debug.Log($"Loading level {levelIndex}.");
                 SceneManager.LoadScene(levelIndex);

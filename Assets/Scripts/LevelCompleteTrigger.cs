@@ -3,20 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class LevelCompleteTrigger : MonoBehaviour
 {
-    [SerializeField] private int levelIndex; // The index of the level this collider is linked to
+    [SerializeField] private int levelIndex;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // Save the completion state
-            PlayerPrefs.SetInt("Level" + levelIndex + "Completed", 2); // Use 2 to indicate completed
+            PlayerPrefs.SetInt("Level" + levelIndex + "Completed", 2); // Mark level as completed
             PlayerPrefs.Save();
+            Debug.Log($"Level {levelIndex} marked as completed in PlayerPrefs.");
 
-            Debug.Log($"Level {levelIndex} completed. Progress saved to PlayerPrefs.");
-
-            // Load the Map scene (index 1)
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(1); // Return to map scene
         }
     }
 }
+
