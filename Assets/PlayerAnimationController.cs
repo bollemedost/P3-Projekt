@@ -11,7 +11,7 @@ public class PlayerAnimationController : MonoBehaviour
     private static readonly int IsGrounded = Animator.StringToHash("isGrounded");
     private static readonly int Jump = Animator.StringToHash("Jump");
     private static readonly int DoubleJump = Animator.StringToHash("DoubleJump");
-    private static readonly int Dash = Animator.StringToHash("Dash");
+    private static readonly int IsDashing = Animator.StringToHash("IsDashing");
     private static readonly int Smash = Animator.StringToHash("Smash");
 
     private void Awake()
@@ -44,20 +44,19 @@ public class PlayerAnimationController : MonoBehaviour
         {
             animator.SetTrigger(Jump);
             hasJumped = true;  // Mark that jump animation was triggered
-           // AudioManagerSlay.Instance.PlayJumpSound();  // Play jump sound using AudioManager
+            AudioManagerSlay.Instance.PlayJumpSound();  // Play jump sound using AudioManager
         }
 
         if (isDoubleJumping) // Trigger double jump
         {
             animator.SetTrigger(DoubleJump);
-           // AudioManagerSlay.Instance.PlayDoubleJumpSound();  // Play double jump sound
         }
 
-        if (isDashing) // Trigger dash
+
+        /*if (isDashing) // Trigger dash
         {
             animator.SetTrigger(Dash);
-            //AudioManagerSlay.Instance.PlayDashSound();  // Play dash sound
-        }
+        }*/
 
         if (isSmashing) // Trigger smash
         {
@@ -70,32 +69,22 @@ public class PlayerAnimationController : MonoBehaviour
         {
             hasJumped = false;  // Reset jump flag when grounded
         }
-
-        // Debug animation states
-        //Debug.Log($"Animation States: isRunning={isRunning}, isGrounded={isGrounded}, isJumping={isJumping}, isDoubleJumping={isDoubleJumping}, isDashing={isDashing}, isSmashing={isSmashing}");
     }
 
     public void TriggerDoubleJump()
     {
         animator.SetTrigger(DoubleJump);
-      //  AudioManagerSlay.Instance.PlayDoubleJumpSound();  // Play double jump sound
+        AudioManagerSlay.Instance.PlayDoubleJumpSound();  // Play double jump sound
     }
 
     public void TriggerPowerUpAnimation()
     {
         animator.SetTrigger("PowerUpActivated");  // Trigger the power-up activation animation
-       // AudioManagerSlay.Instance.PlayPowerUpSound();  // Play power-up sound
+       AudioManagerSlay.Instance.PlayPowerUpSound();  // Play power-up sound
     }
 
-    public void TriggerDashAnimation()
+public void SetDashing(bool isDashing)
 {
-    animator.SetTrigger(Dash);
-    StartCoroutine(ResetDashTrigger());
-}
-
-private IEnumerator ResetDashTrigger()
-{
-    yield return null; // Wait for the frame to complete
-    animator.ResetTrigger(Dash); // Reset the trigger to prevent looping
+    animator.SetBool(IsDashing, isDashing);
 }
 }

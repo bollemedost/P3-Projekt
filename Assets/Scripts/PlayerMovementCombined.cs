@@ -354,14 +354,17 @@ public class PlayerMovementCombined : MonoBehaviour
         }
     }
 
-    public IEnumerator Dash()
+    private IEnumerator Dash()
     {
         isDashing = true;
         canDash = false; // Prevent dashing again until grounded
         lastDashTime = Time.time;
 
-        // Trigger dash animation once
-        animationHandler.TriggerDashAnimation();
+        // Notify animation controller that dash has started
+        animationHandler.SetDashing(true);
+
+        // Play dash sound
+        AudioManagerSlay.Instance.PlayDashSound();
 
         trailRenderer.emitting = true;
 
@@ -373,6 +376,9 @@ public class PlayerMovementCombined : MonoBehaviour
         rb.AddForce(dashDirection * dashSpeed, ForceMode.VelocityChange);
 
         yield return new WaitForSeconds(dashDuration);
+
+        // Notify animation controller that dash has ended
+        animationHandler.SetDashing(false);
 
         trailRenderer.emitting = false;
         isDashing = false;

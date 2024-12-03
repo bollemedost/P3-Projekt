@@ -10,6 +10,8 @@ public class AudioManagerSlay : MonoBehaviour
     public AudioClip dashSoundClip;
     public AudioClip smashSoundClip;
     public AudioClip powerUpSoundClip;
+    public AudioClip damageSoundClip; // Add this line for damage sound
+    public AudioClip backgroundMusicClip; // Background music clip
 
     private AudioSource audioSource;
 
@@ -30,6 +32,18 @@ public class AudioManagerSlay : MonoBehaviour
         if (audioSource == null)
         {
             Debug.LogError("AudioSource component is missing on the AudioManager!");
+        }
+    }
+
+    private void Start()
+    {
+        // Play background music
+        if (backgroundMusicClip != null)
+        {
+            audioSource.clip = backgroundMusicClip;
+            audioSource.loop = true; // Make sure it loops
+            audioSource.volume = 0.5f; // Set default volume (optional)
+            audioSource.Play(); // Start the music
         }
     }
 
@@ -77,4 +91,14 @@ public class AudioManagerSlay : MonoBehaviour
             audioSource.PlayOneShot(powerUpSoundClip);
         }
     }
+
+    // Play the damage sound
+    public void PlayDamageSound()
+    {
+        if (damageSoundClip != null)
+        {
+            audioSource.PlayOneShot(damageSoundClip);
+        }
+    }
+
 }

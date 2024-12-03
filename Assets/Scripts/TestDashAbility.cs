@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestDashAbility : MonoBehaviour
+/*public class TestDashAbility : MonoBehaviour
 {
     // Reference to the SlayPlayerMovement script
     private PlayerMovementCombined playerMovement;
@@ -23,4 +23,4 @@ public class TestDashAbility : MonoBehaviour
             }
         }
     }
-}
+}*/

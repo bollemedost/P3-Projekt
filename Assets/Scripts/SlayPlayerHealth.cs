@@ -47,6 +47,9 @@ public class SlayPlayerHealth : MonoBehaviour
         StartCoroutine(Shake(shakeDuration, shakeMagnitude));
         StartCoroutine(FlashRed());
 
+        // Play damage sound
+        AudioManagerSlay.Instance.PlayDamageSound(); // Call the damage sound method
+
         if (currentHealth <= 0)
         {
             Die();

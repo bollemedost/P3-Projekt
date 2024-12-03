@@ -56,6 +56,16 @@ public class CubeExplosion : MonoBehaviour
             Debug.LogError("CubeFragmentPrefab is not assigned!");
             return;
         }
+        
+        // Play the smash sound
+        if (AudioManagerSlay.Instance != null)
+        {
+            AudioManagerSlay.Instance.PlaySmashSound();
+        }
+        else
+        {
+            Debug.LogWarning("AudioManagerSlay instance is missing!");
+        }
 
         Vector3 cubeSize = GetComponent<Renderer>().bounds.size;
         Vector3 fragmentSize = cubeSize / fragmentsPerAxis;
