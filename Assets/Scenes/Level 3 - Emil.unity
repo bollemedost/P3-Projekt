@@ -1703,7 +1703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149406470}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.70845e-40, y: 1.85423e-40, z: 0, w: 1}
+  m_LocalRotation: {x: -3.70949e-40, y: 1.85474e-40, z: 0, w: 1}
   m_LocalPosition: {x: -94.73, y: 5.42, z: -30.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4540,7 +4540,7 @@ MonoBehaviour:
   smashSoundClip: {fileID: 8300000, guid: 1d1ae09c81bc7c348b7fad214a9c07d9, type: 3}
   powerUpSoundClip: {fileID: 8300000, guid: 47369ae8eecd6f64ba0d0f6e0d7b3004, type: 3}
   damageSoundClip: {fileID: 8300000, guid: ddc3867df7d963144844ba10f05b0358, type: 3}
-  backgroundMusicClip: {fileID: 8300000, guid: e275a38465d80cb41bab23ea600c35d1, type: 3}
+  backgroundMusicClip: {fileID: 8300000, guid: ad6077e0111d0f14ead1ab258e4931fb, type: 3}
 --- !u!4 &588426901
 Transform:
   m_ObjectHideFlags: 0
