@@ -75,3 +75,7 @@ crashlytics-build.properties
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Ignore vscode temp files
+.vscode/
+*.vsconfig
