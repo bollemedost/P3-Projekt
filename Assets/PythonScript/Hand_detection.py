@@ -113,3 +113,12 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
+
+
+
+# References:
+# https://answers.opencv.org/question/120499/how-to-eliminate-small-contours-in-a-binary-image/
+# https://docs.opencv.org/4.x/d5/d45/tutorial_py_contours_more_functions.html
+# https://www.codepasta.com/2016/11/06/background-segmentation-removal-with-opencv
+# https://www.youtube.com/watch?v=JfaZNiEbreE
+# ChatGPT - troubleshooting and errorhandling
