@@ -99,3 +99,5 @@ public class CubeExplosion : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
+// Made with the combined power of the human mind and computing power from ChatGPT
